@@ -1,0 +1,138 @@
+<!DOCTYPE html>
+<html>
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width,initial-scale=1">
+<title>starHub V1 - Auto Update</title>
+<style>
+:root{--bg:#fff;--card:#f8f9fa;--b:#e8eaed;--cyan:#01875f}
+*{box-sizing:border-box;margin:0;padding:0}
+body{background:var(--bg);font-family:system-ui;padding:8px}
+header{display:flex;gap:8px;align-items:center;padding:10px 0;border-bottom:1px solid var(--b);position:sticky;top:0;background:#fff;z-index:10}
+.logo{font-weight:900;font-size:20px;color:var(--cyan)}
+.search{flex:1;background:#f1f3f4;border:0;border-radius:24px;padding:10px 14px;outline:none}
+.grid{display:grid;grid-template-columns:repeat(3,1fr);gap:10px;margin-top:10px}
+.card{background:var(--card);border:1px solid var(--b);border-radius:16px;padding:10px;text-align:center;cursor:pointer}
+.card img{width:48px;height:48px;margin:0 auto;display:block;background:#fff;border-radius:12px;padding:6px}
+.card h3{font-size:11px;margin:4px 0;white-space:nowrap;overflow:hidden;text-overflow:ellipsis}
+.btn{font-size:10px;padding:6px 10px;border-radius:16px;border:1px solid var(--b);background:#fff;cursor:pointer}
+.btn.on{border-color:var(--cyan);color:var(--cyan);background:#e6f4ea}
+#float{position:fixed;right:12px;bottom:12px;width:52px;height:52px;border-radius:50%;background:var(--cyan);color:#fff;border:none;z-index:999;font-size:20px}
+#win{position:fixed;right:6px;bottom:70px;width:96%;max-width:400px;max-height:85vh;background:#fff;border:1px solid var(--b);border-radius:16px;display:none;flex-direction:column;z-index:1000;box-shadow:0 10px 30px rgba(0,0,0,.15)}
+#win.show{display:flex}.wh{padding:12px;background:#f8f9fa;display:flex;justify-content:space-between;font-weight:700;border-bottom:1px solid var(--b);font-size:12px}
+.wb{padding:10px;display:flex;flex-direction:column;gap:8px;overflow:auto}
+textarea{width:100%;min-height:80px;background:#f1f3f4;border:1px solid var(--b);border-radius:8px;padding:8px;font-size:11px}
+</style>
+</head>
+<body>
+<header><div class="logo">starHub V1</div><input id="q" class="search" placeholder="Search..."><button class="btn" onclick="toggleOwner()">👑</button></header>
+
+<div style="display:flex;gap:6px;flex-wrap:wrap;margin:8px 0">
+<button class="btn" id="bData" onclick="tData()">📉 Data: OFF (HD)</button>
+<button class="btn on" id="bNet" onclick="tNet()">Net: HIGH</button>
+<button class="btn" onclick="addUserShortcut()">➕ My Shortcut</button>
+</div>
+
+<div style="font-size:10px;background:#e6f4ea;border-radius:8px;padding:6px;text-align:center">
+✓ Owner=Global | User=Own | Small=Low Net | <span id="count">0 items</span>
+</div>
+
+<div class="grid" id="grid"></div>
+<button id="float">↻</button>
+
+<div id="win">
+<div class="wh"><span id="winTitle">Owner Panel</span><span onclick="closeW()" style="cursor:pointer">✕</span></div>
+<div class="wb">
+<textarea id="paste" placeholder="google.com, youtube.com, netflix.com"></textarea>
+<div style="display:flex;gap:6px">
+<button class="btn on" style="flex:1" onclick="analyze()">🔍 Auto Fix</button>
+<button class="btn" style="flex:1;background:var(--cyan);color:#fff" onclick="doUpdate()">UPDATE DONE</button>
+</div>
+<div id="log" style="font-size:9px;color:#777;background:#f8f9fa;padding:6px;border-radius:6px">Log: Ready - Add domains above</div>
+<button class="btn" style="width:100%" onclick="down()">⬇️ Download index.html (for GitHub)</button>
+<div style="font-size:9px;color:#999">Owner Password: starhub123</div>
+</div>
+</div>
+
+<script>
+// === OWNER GLOBAL ITEMS - YEHI GITHUB PE UPDATE HOGA ===
+let globalItems=[
+{name:'Google',domain:'google.com',url:'https://google.com'},
+{name:'YouTube',domain:'youtube.com',url:'https://youtube.com'},
+{name:'GitHub',domain:'github.com',url:'https://github.com'},
+{name:'Instagram',domain:'instagram.com',url:'https://instagram.com'},
+{name:'Facebook',domain:'facebook.com',url:'https://facebook.com'}
+];
+
+let userItems=JSON.parse(localStorage.getItem('sh_user')||'[]');
+let IS_OWNER=localStorage.getItem('is_owner')==='1';
+let DATA_SAVER=false, NET='high';
+
+function iconUrl(d){
+if(DATA_SAVER) return `https://www.google.com/s2/favicons?domain=${d}&sz=32`;
+return `https://www.google.com/s2/favicons?domain=${d}&sz=64`;
+}
+
+function render(){
+const g=document.getElementById('grid');
+const q=(document.getElementById('q').value||'').toLowerCase();
+g.innerHTML='';
+let all=[...globalItems,...userItems];
+let uniq={}; all=all.filter(x=>{let k=x.domain;if(uniq[k])return false;uniq[k]=1;return true;});
+let filtered=all.filter(i=>!q||i.name.toLowerCase().includes(q));
+document.getElementById('count').textContent=filtered.length+' items';
+filtered.forEach(it=>{
+const div=document.createElement('div');div.className='card';
+div.innerHTML=`<img src="${iconUrl(it.domain)}" loading="${NET==='low'?'lazy':'eager'}" onerror="this.src='https://www.google.com/s2/favicons?domain=${it.domain}&sz=32'"><h3>${it.name}</h3>`;
+div.onclick=()=>window.open(it.url,'_blank');
+g.appendChild(div);
+});
+document.getElementById('winTitle').textContent=IS_OWNER?'Owner: Global Update':'User: Own Only';
+}
+
+function toggleOwner(){
+if(IS_OWNER){IS_OWNER=false;localStorage.setItem('is_owner','0');render();}
+else{let p=prompt('Owner Password?');if(p==='starhub123'){IS_OWNER=true;localStorage.setItem('is_owner','1');render();}else if(p) alert('Wrong Password!');}
+}
+function tData(){DATA_SAVER=!DATA_SAVER;document.getElementById('bData').textContent=DATA_SAVER?'📉 Data: ON (Low)':'📉 Data: OFF (HD)';document.getElementById('bData').classList.toggle('on',DATA_SAVER);render();}
+function tNet(){NET=NET==='high'?'low':'high';document.getElementById('bNet').textContent='Net: '+NET.toUpperCase();document.getElementById('bNet').classList.toggle('on',NET==='high');render();}
+function addUserShortcut(){let d=prompt('Domain? ex: netflix.com');if(!d)return;let n=prompt('Name?',d.split('.')[0]);d=d.replace(/^https?:\/\//,'').split('/')[0];userItems.push({name:n||d,domain:d,url:'https://'+d});localStorage.setItem('sh_user',JSON.stringify(userItems));render();}
+
+let pending=[];
+function analyze(){
+let raw=document.getElementById('paste').value.trim();if(!raw){alert('Paste domains!');return;}
+pending=[];let fixes={'gogle.com':'google.com','youtub.com':'youtube.com'};
+raw.split(/[\n,\s,]+/).forEach(l=>{
+l=l.trim().toLowerCase().replace(/^https?:\/\//,'').split('/')[0];if(!l||!l.includes('.'))return;
+if(fixes[l])l=fixes[l];
+pending.push({name:l.split('.')[0],domain:l,url:'https://'+l});
+});
+document.getElementById('log').innerHTML='Found '+pending.length+' -> '+pending.map(p=>p.domain).join(', ');
+}
+
+function doUpdate(){
+if(!pending.length){alert('Pehle Auto Fix dabao!');return;}
+if(IS_OWNER){
+// Owner = Add to global list + Download karna padega GitHub ke liye
+globalItems.push(...pending);
+document.getElementById('log').innerHTML+='<br><b>Global me add hua! Ab Download dabake GitHub pe daal de - Fir sabko dikhega!</b>';
+alert('Owner Global Added! Ab Download > GitHub Commit kar - Fir '+ 'https://starhubigdp.pages.dev pe sabko dikhega!');
+}else{
+userItems.push(...pending);localStorage.setItem('sh_user',JSON.stringify(userItems));
+document.getElementById('log').innerHTML+='<br>Own me add hua - Sirf tere phone me!';
+}
+pending=[];render();
+}
+function closeW(){document.getElementById('win').classList.remove('show');}
+function down(){
+let html=document.documentElement.outerHTML;
+// globalItems ko HTML me inject kar de taki GitHub pe save ho
+let injected=html.replace(/let globalItems=\[.*?\];/s, `let globalItems=${JSON.stringify(globalItems)};`);
+let b=new Blob([injected],{type:'text/html'});let a=document.createElement('a');a.href=URL.createObjectURL(b);a.download='index.html';a.click();
+}
+document.getElementById('float').onclick=()=>document.getElementById('win').classList.add('show');
+document.getElementById('q').addEventListener('input',render);
+render();
+</script>
+</body>
+  </html>
