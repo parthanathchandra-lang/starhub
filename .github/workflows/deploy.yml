@@ -1,0 +1,111 @@
+name: Deploy StarHub to All Mirrors + Keep-Alive
+
+on:
+  push:
+    branches: [main]
+  schedule:
+    - cron: '*/10 * * * *' # every 10 min - buffer for Render/Glitch/etc (sleeps:true hosts)
+  workflow_dispatch:
+
+jobs:
+  deploy-primary-hosts:
+    if: github.event_name != 'schedule'
+    runs-on: ubuntu-latest
+    steps:
+      - name: Checkout
+        uses: actions/checkout@v4
+
+      - name: Deploy to Cloudflare Pages
+        uses: cloudflare/pages-action@v1
+        with:
+          apiToken: ${{ secrets.CF_API_TOKEN }}
+          accountId: ${{ secrets.CF_ACCOUNT_ID }}
+          projectName: starhub
+          directory: .
+
+      - name: Deploy to GitHub Pages
+        uses: peaceiris/actions-gh-pages@v4
+        with:
+          github_token: ${{ secrets.GITHUB_TOKEN }}
+          publish_dir: .
+
+      - name: Deploy to Vercel
+        uses: amondnet/vercel-action@v25
+        with:
+          vercel-token: ${{ secrets.VERCEL_TOKEN }}
+          vercel-org-id: ${{ secrets.VERCEL_ORG_ID }}
+          vercel-project-id: ${{ secrets.VERCEL_PROJECT_ID }}
+          working-directory: .
+
+      - name: Deploy to Firebase
+        uses: FirebaseExtended/action-hosting-deploy@v0
+        with:
+          repoToken: ${{ secrets.GITHUB_TOKEN }}
+          firebaseServiceAccount: ${{ secrets.FIREBASE_SERVICE_ACCOUNT }}
+          channelId: live
+          projectId: starhubigdp
+
+      - name: Deploy to Surge
+        run: |
+          npm install -g surge
+          surge . starhub-eta.surge.sh --token ${{ secrets.SURGE_TOKEN }}
+
+      # ---------------------------------------------------------------
+      # WHEN YOU ADD A FUTURE HOST THAT NEEDS A REAL DEPLOY STEP
+      # (e.g. Render, Fly.io, Glitch, Replit): add a new step here.
+      # This CANNOT be auto-generated because every host has its own
+      # deploy method/action/CLI. Example for Render (deploy hook URL,
+      # no CLI needed - just create a secret RENDER_DEPLOY_HOOK_URL):
+      #
+      # - name: Deploy to Render
+      #   run: curl -X POST "${{ secrets.RENDER_DEPLOY_HOOK_URL }}"
+      # ---------------------------------------------------------------
+
+  keep-alive-ping:
+    runs-on: ubuntu-latest
+    steps:
+      - name: Checkout
+        uses: actions/checkout@v4
+
+      - name: Ping sleeping/renewal hosts from index.html
+        run: |
+          python3 -c "
+          import re, sys
+          import urllib.request
+
+          text = open('index.html', 'r', encoding='utf-8').read()
+
+          # Pull out the const DOMAINS = [ ... ]; array body
+          m = re.search(r'const DOMAINS\s*=\s*\[(.*?)\n\];', text, re.S)
+          if not m:
+              print('DOMAINS array not found')
+              sys.exit(0)
+
+          block = m.group(1)
+
+          # Split into individual { ... } objects, skipping commented-out examples
+          objs = []
+          for line_block in re.findall(r'\{([^}]+)\}', block):
+              objs.append(line_block)
+
+          to_ping = []
+          for o in objs:
+              compact = o.replace(' ', '')
+              if 'sleeps:true' not in compact:
+                  continue
+              url_match = re.search(r'pingUrl\s*:\s*[\'\"]([^\'\"]+)[\'\"]', o)
+              if not url_match:
+                  url_match = re.search(r'url\s*:\s*[\'\"]([^\'\"]+)[\'\"]', o)
+              if url_match:
+                  to_ping.append(url_match.group(1))
+
+          print(f'Found {len(to_ping)} sleeping/renewal host(s) to ping: {to_ping}')
+
+          for url in to_ping:
+              try:
+                  print(f'Pinging {url}...')
+                  urllib.request.urlopen(url, timeout=15).read(100)
+                  print(f'OK: {url}')
+              except Exception as e:
+                  print(f'FAIL: {url} - {e}')
+          "
