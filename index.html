@@ -1,0 +1,148 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="utf-8"><meta name="viewport" content="width=device-width,initial-scale=1">
+<title>StarHub igdp - MAX Power Free Flow</title>
+<link href="https://fonts.googleapis.com/css2?family=Space+Grotesk:wght@700&family=Inter:wght@400;600&display=swap" rel="stylesheet">
+<style>
+:root{--bg:#ffffff;--card:#f4f5f9;--line:#dfe1ea;--neon:#00b368;--purp:#8b5cf6;--text:#5b5f70}
+*{box-sizing:border-box;margin:0;padding:0}body{background:var(--bg);color:#12131a;font-family:Inter}
+header{position:fixed;top:0;left:0;right:0;height:56px;background:rgba(255,255,255,.96);backdrop-filter:blur(12px);border-bottom:1px solid var(--line);display:flex;align-items:center;gap:10px;padding:0 14px;z-index:100}
+.logo{font-family:Space Grotesk;font-size:20px;font-weight:700}.logo b{color:var(--neon)}
+.search{flex:1;max-width:620px;position:relative;display:flex;align-items:center;gap:8px;background:#f0f1f6;border:1px solid var(--line);border-radius:24px;padding:7px 14px}
+.search input{flex:1;background:transparent;border:0;color:#12131a;outline:none}
+.searchDrop{position:absolute;top:44px;left:0;right:0;background:#ffffff;border:1px solid var(--line);border-radius:14px;padding:8px;display:none;z-index:200;max-height:320px;overflow:auto;box-shadow:0 8px 24px rgba(0,0,0,.08)}
+.pill{padding:6px 14px;border-radius:20px;background:#f0f1f6;border:1px solid var(--line);font-size:12px;cursor:pointer;white-space:nowrap;color:#12131a}
+.pill.on{background:var(--neon);color:#fff;font-weight:700}
+#wrap{margin:56px auto 0;max-width:1240px;padding:12px;padding-bottom:90px}
+.card{background:var(--card);border:1px solid var(--line);border-radius:16px;padding:14px;margin:12px 0}
+.grid{display:grid;grid-template-columns:repeat(auto-fill,minmax(150px,1fr));gap:10px}
+.hscroll{display:flex;gap:12px;overflow-x:auto;padding-bottom:8px}.hscroll::-webkit-scrollbar{display:none}
+.hcard{min-width:210px;background:#ffffff;border:1px solid var(--line);border-radius:14px;overflow:hidden;cursor:pointer}
+.hcard img{width:100%;height:110px;object-fit:cover}
+.tile{background:#ffffff;border:1px solid var(--line);border-radius:14px;padding:10px;text-align:center;cursor:pointer}
+.tile:hover{border-color:var(--neon)}.badge{font-size:9px;padding:3px 7px;border-radius:20px;background:#00b36822;color:var(--neon);border:1px solid #00b36844}
+.btn{width:100%;padding:8px;border-radius:20px;border:0;font-weight:800;cursor:pointer;margin-top:6px;font-size:12px}
+.direct{background:var(--neon);color:#fff}.cloud{background:var(--purp);color:#fff}
+.iframeBox{width:100%;height:62vh;border:0;background:#000;border-radius:14px;margin-top:10px}
+.note{font-size:11px;color:var(--text);line-height:1.5}
+.catRow{display:flex;gap:8px;overflow-x:auto;margin:12px 0}
+.relRow{display:flex;gap:8px;flex-wrap:wrap;margin:8px 0}
+</style>
+</head>
+<body>
+<header>
+<div class="logo">✦ <b>STARHUB</b> igdp</div>
+<div class="search" id="searchBox">🔍 <input id="q" placeholder="Search games, shorts, creators..." oninput="window.onSearchInput()" onfocus="window.showDrop()"><div id="searchDrop" class="searchDrop"></div></div>
+<div style="font-size:11px;display:flex;gap:6px;align-items:center"><span id="authStatus">🟢 Guest</span><button onclick="window.shareStarHub()" class="pill">Share</button></div>
+</header>
+<div id="wrap">
+<div id="linkInfo"></div>
+
+<div class="card" style="background:linear-gradient(135deg,#ffffff,#e7fbf2);border-color:var(--neon)">
+<div style="display:flex;justify-content:space-between"><div><h1 style="font-family:Space Grotesk;font-size:28px">⚡ MAX Power</h1><p class="note">Games • Shorts • More power to play • Live • <span id="liveTime"></span></p></div><span id="cap" class="badge">Checking...</span></div>
+<div class="catRow" id="catRow"></div>
+</div>
+
+<div class="card"><div style="display:flex;justify-content:space-between"><h3>Games for you</h3><span class="pill" onclick="curCat='All';renderCats();renderMain()">See all ></span></div><div id="gamesForYou" class="hscroll" style="margin-top:10px"></div></div>
+
+<div class="card"><div style="display:flex;justify-content:space-between"><h3>Shorts — trending now</h3><span class="pill">More ></span></div><div id="shortsRow" class="hscroll" style="margin-top:10px"></div></div>
+
+<div class="card"><h3>🔍 Open Search + Play - Like Play Store / YouTube</h3>
+<div id="searchMeta" class="note" style="margin-top:6px"></div>
+<div class="relRow" id="relatedRow"></div>
+<div id="gameGrid" class="grid" style="margin-top:10px"></div>
+<div id="shortcuts" class="grid" style="margin-top:14px"></div>
+<div id="player" style="display:none;margin-top:12px"><b id="pTitle">Playing</b> <button onclick="window.closeP()" class="pill">Close</button><iframe id="frame" class="iframeBox" allow="autoplay;fullscreen"></iframe><div id="warn" style="display:none;background:#ff3b3b18;border:1px solid #ff3b3b44;border-radius:10px;padding:8px;margin-top:8px;font-size:11px">⚠️ Device low - Try Cloud</div></div>
+</div>
+
+<div class="card" style="border-color:var(--neon)"><h3>🔒 PMail Vault</h3><div style="display:flex;gap:8px;margin-top:8px"><input id="pmailInput" placeholder="Email" style="flex:1;padding:10px;background:#f0f1f6;border:1px solid #d5d7e0;border-radius:10px;color:#12131a"><button onclick="window.createPMail()" class="btn direct" style="width:100px">Create</button></div><div id="pmailStack" class="grid" style="margin-top:10px"></div><div id="govtCheck" class="note"></div></div>
+</div>
+
+<script>
+/* FIX: window.DOMAINS moved into a plain (non-module) script that runs
+   immediately during parsing, BEFORE the classic script below needs it.
+   Module scripts (see next <script type="module">) always execute AFTER
+   the whole document has finished parsing (same timing as `defer`), so
+   defining DOMAINS inside the module meant it was still `undefined`
+   when renderLinkInfo() ran further down — causing a TypeError on
+   `window.DOMAINS.map(...)` that killed the initial render entirely. */
+window.DOMAINS=[
+  {name:'Cloudflare Pages',url:'https://starhubigdp.pages.dev'},
+  {name:'GitHub Pages',url:'https://parthanathachandra-lang.github.io/starhub/'},
+  {name:'Vercel',url:'https://starhubigdp-eta.vercel.app'},
+  {name:'Firebase',url:'https://starhubigdp.web.app'},
+  {name:'Surge',url:'https://starhub-eta.surge.sh'}
+];
+</script>
+<script type="module">
+import { initializeApp } from "https://www.gstatic.com/firebasejs/10.12.2/firebase-app.js";
+import { getAuth } from "https://www.gstatic.com/firebasejs/10.12.2/firebase-auth.js";
+const firebaseConfig={apiKey:"AIzaSyA0p7V6pJKmAFiWM3je01g1iPXZzQYvEqI",authDomain:"starhubigdp.firebaseapp.com",projectId:"starhubigdp",storageBucket:"starhubigdp.firebasestorage.app",messagingSenderId:"983449949100",appId:"1:983449949100:web:d0684c4379354a9b066009"};
+const app=initializeApp(firebaseConfig); window.auth=getAuth(app);
+</script>
+<script>
+function esc(s){return String(s).replace(/[&<>"']/g,c=>({'&':'&amp;','<':'&lt;','>':'&gt;','"':'&quot;',"'":'&#39;'}[c]));}
+let isOwner=false, deviceCap={ok:true}, curCat='All';
+let searchHistory=JSON.parse(localStorage.getItem('starhubSearchHistory')||'[]');
+let pmails=JSON.parse(localStorage.getItem('pmailVault')||'[]');
+const cats=['All','Games','Embedded','Clipping','Songs','Devs'];
+const relatedTags=['Firefighter games','Parkour games','Boating apps','Car racing games','Coloring book apps','Animation apps','detective online games','Action','RPG','Puzzle'];
+function renderCats(){document.getElementById('catRow').innerHTML=cats.map(c=>`<span class="pill ${curCat===c?'on':''}" onclick="curCat='${c}';renderCats();renderMain()">${c}</span>`).join('');}
+renderCats(); document.getElementById('liveTime').innerText=new Date().toLocaleString();
+function renderLinkInfo(){
+ let host=location.hostname, isV=host.includes('vercel.app'), c=document.getElementById('linkInfo');
+ c.innerHTML=isV?`<div class="card" style="border-color:var(--purp)"><b>👑 Owner Panel - ${esc(host)}</b> <span id="ownerBadge" style="display:${isOwner?'inline-block':'none'}" class="badge">👑 Owner Verified</span><div style="margin-top:8px">${window.DOMAINS.map(d=>`<div class="note">🔗 ${esc(d.name)}: <a href="${d.url}" style="color:var(--neon)">${d.url}</a></div>`).join('')}</div><div style="display:flex;gap:8px;margin-top:10px"><button onclick="window.loginOwner('github')" class="btn cloud" style="width:180px">GitHub Login</button><button onclick="window.loginOwner('google')" class="btn direct" style="width:180px">Google Login</button></div></div>`:`<div class="card" style="border-color:var(--neon)"><b>🌐 StarHub igdp - ${window.DOMAINS.length} Mirrors Online</b><div style="display:flex;gap:6px;margin-top:8px;flex-wrap:wrap">${window.DOMAINS.map((d,i)=>`<a href="${d.url}" style="text-decoration:none"><span class="badge">Mirror ${i+1} • ${esc(d.name)}</span></a>`).join('')}</div></div>`;
+}
+window.loginOwner=async(t)=>{try{const {GithubAuthProvider,GoogleAuthProvider,signInWithPopup}=await import("https://www.gstatic.com/firebasejs/10.12.2/firebase-auth.js");const p=t==='github'?new GithubAuthProvider():new GoogleAuthProvider();const r=await signInWithPopup(window.auth,p);isOwner=true;document.getElementById('authStatus').innerText='👑 Owner '+(r.user.displayName||'');renderLinkInfo();renderMain();}catch(e){alert('Firebase Auth enable');}};
+window.shareStarHub=()=>{const u=window.DOMAINS[0].url; if(navigator.share) navigator.share({title:'StarHub',text:'StarHub igdp - '+u,url:u}); else prompt('Copy:',u);};
+window.createPMail=()=>{let raw=document.getElementById('pmailInput').value.trim(); if(!raw.includes('@')) return alert('email'); let id='pmail_'+Date.now(), at=raw.indexOf('@'), masked=raw[0]+'***'+raw.slice(at), dom=raw.split('@')[1]||''; pmails.push({id,masked,dom,isGovt:dom.includes('gov')}); localStorage.setItem('pmailVault',JSON.stringify(pmails)); document.getElementById('pmailInput').value=''; renderPMails(); document.getElementById('govtCheck').innerText=dom.includes('gov')?`⚠️ Govt ${dom}`:`✅ Private ${dom}`;};
+window.toggleHide=(id)=>{let p=pmails.find(x=>x.id===id); if(!p) return; p.hidden=!p.hidden; localStorage.setItem('pmailVault',JSON.stringify(pmails)); renderPMails();};
+function renderPMails(){document.getElementById('pmailStack').innerHTML=pmails.map(p=>`<div class="tile"><b>${esc(p.masked)}</b><br><span class="badge">${esc(p.id.slice(-4))}</span><br><button onclick="window.toggleHide('${p.id}')" class="btn direct" style="padding:4px">${p.hidden?'Undo':'Hide'}</button></div>`).join('');} renderPMails();
+(function(){let m=navigator.deviceMemory||4,c=navigator.hardwareConcurrency||4,g=!!document.createElement('canvas').getContext('webgl2'); deviceCap={ok:m>=2&&c>=4&&g,m,c,g}; document.getElementById('cap').innerText=`${m}GB ${c}c ${g?'WebGL2':'NoGL'} ${deviceCap.ok?'Capable':'Low'}`;})();
+let items=[
+ {n:'Nova Strike',cat:'Games',d:'crazygames.com',u:'https://www.crazygames.com/embed/nova-strike',meta:'Action • 4.7★ • 100MB'},
+ {n:'Mystic Quest',cat:'Games',d:'now.gg',u:'https://now.gg/apps/a/15433/b.html',meta:'RPG • 4.5★ • 250MB'},
+ {n:'Block Kombat',cat:'Games',d:'crazygames.com',u:'https://www.crazygames.com/embed/block-kombat',meta:'Puzzle • 4.6★ • 90MB'},
+ {n:'Nebula Rift',cat:'Embedded',d:'crazygames.com',u:'https://www.crazygames.com/embed/nebula-rift',meta:'Action • Sci-Fi'},
+ {n:'Cyber Arena',cat:'Games',d:'crazygames.com',u:'https://www.crazygames.com/embed/cyber-arena',meta:'FPS • 4.8★'}
+];
+let shorts=[{t:'Speedrun tips for Nova Strike ⚡',ch:'StarHub Gaming • 12K views • 1h ago',dur:'0:32'},{t:'How we embedded the game engine | Devlog',ch:'MAX Power Devs • 8.4K views • 3h ago',dur:'0:58'},{t:'Lo-fi mix for gaming 🎵 Focus Boost',ch:'ClippingHub • 22K views • 5h ago',dur:'0:45'},{t:'Epic clutch in Mystic Quest!!!',ch:'GamerLeo • 34K views • 2h ago',dur:'1:12'}];
+window.showDrop=()=>{
+ let q=document.getElementById('q').value.toLowerCase().trim();
+ let d=document.getElementById('searchDrop');
+ let hist=searchHistory.map(h=>`<div class="note" style="padding:6px;cursor:pointer" onclick="document.getElementById('q').value='${esc(h)}';renderMain();showDrop()">🕒 ${esc(h)} <span style="float:right">↗</span></div>`).join('');
+ let rel=relatedTags.filter(t=>!q||t.toLowerCase().includes(q)).slice(0,6).map(t=>`<div class="note" style="padding:6px;cursor:pointer" onclick="document.getElementById('q').value='${esc(t)}';renderMain();showDrop()">🔍 ${esc(t)}</div>`).join('');
+ d.innerHTML=(hist?`<b>Recent</b>${hist}`:'')+`<div style="margin-top:8px"><b>Explore</b>${rel}</div><div class="note" style="margin-top:8px">Categories: All categories • Watch apps • Watch faces • Manage accounts</div>`;
+ d.style.display='block';
+};
+window.onSearchInput=()=>{
+ let q=document.getElementById('q').value.trim();
+ if(q.length>2 &&!searchHistory.includes(q)){searchHistory.unshift(q); searchHistory=searchHistory.slice(0,10); localStorage.setItem('starhubSearchHistory',JSON.stringify(searchHistory));}
+ showDrop(); renderMain();
+};
+document.addEventListener('click',(e)=>{ if(!document.getElementById('searchBox').contains(e.target)) document.getElementById('searchDrop').style.display='none'; });
+window.renderMain=function(){
+ let q=(document.getElementById('q').value||'').toLowerCase().trim();
+ let filtered=items.filter(o=>(curCat==='All'||o.cat===curCat)&&(!q||o.n.toLowerCase().includes(q)||o.meta.toLowerCase().includes(q)||o.cat.toLowerCase().includes(q)||o.d.toLowerCase().includes(q)));
+ document.getElementById('gamesForYou').innerHTML=filtered.map(o=>`<div class="hcard"><img src="https://picsum.photos/seed/${encodeURIComponent(o.n)}/300/180"><div style="padding:8px"><b>${esc(o.n)}</b><br><span class="note">${esc(o.meta)}</span><br><button class="btn direct" onclick="window.playGame('${o.u}','${esc(o.n)}')">Install</button></div></div>`).join('') || `<span class="note">No results for "${esc(q)}"</span>`;
+ document.getElementById('shortsRow').innerHTML=shorts.map(s=>`<div class="hcard" style="min-width:240px"><div style="height:110px;background:#e9ebf2;color:#12131a;display:flex;align-items:center;justify-content:center">▶️ ${esc(s.dur)}</div><div style="padding:8px"><b style="font-size:12px">${esc(s.t)}</b><br><span class="note">${esc(s.ch)}</span></div></div>`).join('');
+ let userType=isOwner?'OWNER • Creator/Admin':(window.auth?.currentUser?'NORMAL USER • Signed In':'GUEST • Not Signed In');
+ let adGate=userType.includes('GUEST')?`<div class="card" style="border-color:#ff3b3b"><b>Ad Gate ⏱️</b> Watch 15 sec ad<div style="margin-top:6px"><div style="height:6px;background:#e2e4ec;border-radius:6px"><div style="width:70%;height:6px;background:linear-gradient(90deg,#00ff88,#ff0)"></div></div></div><div style="margin-top:8px"><button class="pill">Watch Ad (15s)</button> <span class="note">No upload access</span></div></div>`:'';
+ let relatedHTML=relatedTags.slice(0,6).map(t=>`<span class="pill" onclick="document.getElementById('q').value='${esc(t)}';renderMain()">${esc(t)} 🔍</span>`).join('');
+ document.getElementById('relatedRow').innerHTML=relatedHTML;
+ document.getElementById('searchMeta').innerHTML=`${adGate}${searchHistory.length?`<div>Search History: ${searchHistory.map(h=>`<span class="pill" onclick="document.getElementById('q').value='${esc(h)}';renderMain()">${esc(h)}</span>`).join(' ')} <span class="pill" onclick="localStorage.removeItem('starhubSearchHistory');searchHistory=[];renderMain()">Clear</span></div>`:''}<div style="margin-top:6px">Search: ${q?`"${esc(q)}" • ${filtered.length} related found • working`:`free flow • ${filtered.length} items`} • ${esc(userType)}</div>`;
+ document.getElementById('gameGrid').innerHTML=filtered.map(o=>{
+  let btn=userType.includes('GUEST')?`<button class="btn direct">▶ Play</button><div class="note">Sign in to install, cloud play</div>`:
+           userType.includes('OWNER')?`<div style="display:flex;gap:6px"><button class="btn" style="background:#ff3b3b;color:#fff">🗑 Remove</button><button class="btn" style="background:#ff8c00;color:#fff">🚫 Ban</button><button class="btn cloud">📊 Analytics</button></div><div class="note">Owner STAR-77X9 • Reports 23</div>`:
+           `<div style="display:flex;gap:6px"><button class="btn direct">⬇ Install</button><button class="btn cloud">☁ Cloud Play</button></div><div class="note">Your Playtime 3h 12m • Auto-synced</div>`;
+  return `<div class="tile" onclick="window.playGame('${o.u}','${esc(o.n)}')"><img src="https://www.google.com/s2/favicons?domain=${o.d}&sz=32"><br><b>${esc(o.n)}</b><br><span class="badge">${esc(o.cat)} • ${esc(o.meta)}</span>${btn}</div>`;
+ }).join('');
+ document.getElementById('shortcuts').innerHTML=`<b>Open Search Shortcuts - Like V1</b><div class="grid" style="margin-top:8px"><div class="tile" onclick="window.open('https://google.com')"><b>Google</b></div><div class="tile" onclick="window.open('https://youtube.com')"><b>YouTube</b></div><div class="tile" onclick="window.open('https://github.com')"><b>GitHub</b></div><div class="tile" onclick="window.open('https://instagram.com')"><b>Instagram</b></div><div class="tile" onclick="window.open('https://facebook.com')"><b>Facebook</b></div></div>`;
+};
+window.playGame=(u,t)=>{document.getElementById('player').style.display='block'; document.getElementById('pTitle').innerText='☁️ '+t; document.getElementById('frame').src=u; document.getElementById('warn').style.display=(!deviceCap.ok&&!u.includes('now.gg'))?'block':'none'; document.getElementById('player').scrollIntoView({behavior:'smooth'});};
+window.closeP=()=>{document.getElementById('player').style.display='none'; document.getElementById('frame').src='';};
+renderLinkInfo(); renderMain();
+</script>
+</body>
+                                       </html>
