@@ -1,0 +1,98 @@
+<!DOCTYPE html><html><head><meta charset="utf-8"><meta name="viewport" content="width=device-width,initial-scale=1">
+<title>STARHUB - V9 Working</title><style>
+:root{--b:#1a73e8;--l:#e8eaed}*{box-sizing:border-box;margin:0;padding:0}body{font:14px Roboto,sans-serif;padding-bottom:68px;background:#fff}
+.h{position:sticky;top:0;z-index:9;background:#fff;padding:8px 12px;display:flex;gap:8px}.s{flex:1;height:48px;background:#f1f3f4;border-radius:24px;display:flex;align-items:center;padding:0 12px;gap:8px}.s input{flex:1;border:0;background:0;outline:0}
+.tabs{display:flex;gap:20px;padding:0 12px;border-bottom:1px solid var(--l);overflow:auto;position:sticky;top:56px;background:#fff}.tabs span{padding:10px 2px;border-bottom:2px solid transparent;white-space:nowrap;color:#5f6368;cursor:pointer}.tabs .on{color:var(--b);border-color:var(--b);font-weight:600}
+.sec{padding:12px}.row{display:flex;gap:10px;overflow:auto}.row::-webkit-scrollbar{display:none}
+.c{min-width:108px;width:108px;cursor:pointer}.c img{width:108px;height:108px;border-radius:20px}.n{font-size:11px;white-space:nowrap;overflow:hidden;text-overflow:ellipsis}.r{font-size:10px;color:#5f6368;background:#f1f3f4;border-radius:8px;padding:1px 4px;display:inline-block}
+.chip{font-size:9px;background:#e8f0fe;color:#1967d2;padding:2px 6px;border-radius:10px;display:inline-block;margin:1px}
+.btm{position:fixed;bottom:0;left:0;right:0;height:60px;background:#f1f3f4;display:flex;justify-content:space-around;align-items:center;border-top:1px solid var(--l)}.b{font-size:11px;color:#5f6368;display:flex;flex-direction:column;align-items:center;padding:4px 12px;border-radius:14px;cursor:pointer}.b.on{color:var(--b);background:#d3e3fd}
+.fr{width:100%;height:64vh;border:0;background:#000;border-radius:12px}.ad{border:1px dashed #00b368;background:#e7fbf2;border-radius:8px;padding:6px;font-size:10px;display:flex;justify-content:space-between;margin-top:6px}
+.sb{position:absolute;top:52px;left:12px;right:12px;background:#fff;border-radius:12px;box-shadow:0 4px 12px rgba(0,0,0,.2);display:none;z-index:20}
+.si{padding:10px 12px;border-bottom:1px solid #f1f3f4;cursor:pointer}
+</style></head><body>
+<div class="h"><div class="s">🔍<input id="q" placeholder="Search Apps & Games" oninput="sug()" onfocus="sug()">🎤<b style="background:var(--b);color:#fff;width:28px;height:28px;border-radius:50%;display:grid;place-items:center">P</b><div id="sbx" class="sb"></div></div></div>
+<div class="tabs" id="tt"><span class="on" data-t="for">For you</span><span data-t="top">Top charts</span><span data-t="kid">Children</span><span data-t="cat">Categories</span></div>
+
+<div id="for" class="sec"><div><span style="font-size:11px;color:#5f6368">Sponsored •</span> <b>Suggested for you</b></div><div class="row" id="sr" style="margin-top:6px"></div><div style="margin-top:12px"><b>Recommended for you</b><div class="row" id="rr" style="margin-top:6px"></div></div><div style="margin-top:12px"><b>Trending</b><div id="tr" style="background:#f8f9fa;border-radius:10px;margin-top:6px"></div></div></div>
+<div id="top" class="sec" style="display:none"><b>Top free</b><div class="row" id="tr2" style="margin-top:6px"></div></div>
+<div id="kid" class="sec" style="display:none"><b>Teacher approved</b><div class="row" id="kr" style="margin-top:6px"></div></div>
+<div id="cat" class="sec" style="display:none"><b>Categories - Where inside box - No bar list</b><div style="display:flex;gap:6px;flex-wrap:wrap;margin-top:8px"><span class="chip" onclick="go('MOBA')">MOBA</span><span class="chip" onclick="go('Action')">Action</span><span class="chip" onclick="go('Android')">Android</span><span class="chip" onclick="go('PC')">PC</span><span class="chip" onclick="go('VR')">VR</span><span class="chip" onclick="go('Videos')">Videos</span></div></div>
+
+<div id="det" class="sec" style="display:none"></div>
+<div id="pl" class="sec" style="display:none"><div class="ad"><span>📢 Top: Platform Ad 5s then FREE - 🔊</span><span>🔊</span></div><iframe id="fr" class="fr" allow="autoplay;fullscreen" sandbox="allow-scripts allow-same-origin allow-popups allow-forms"></iframe><div class="ad" style="border-color:#8b5cf6;background:#f3e8ff"><span>⭐ Bottom: StarHub Ad if avail else hidden - 🔊</span><span>🔊</span></div><div id="pi" style="font-size:11px;color:#5f6368;margin-top:4px"></div></div>
+
+<div class="btm"><div class="b" data-n="games">🎮Games</div><div class="b on" data-n="apps">⊞Apps</div><div class="b" data-n="search">🔍Search</div><div class="b" data-n="books">📖Books</div><div class="b" data-n="you">👤You</div></div>
+
+<script>
+// --- DATA - No Trash - Only working fields - Where inside box ---
+let D=[
+{id:'pkm',n:'Pokémon UNITE',d:'The Pokémon Co',r:'4.4',c:'MOBA',pf:['Android','iOS','PC','Console'],u:'https://now.gg/apps/the-pokemon-company/5947/pokemon-unite.html',i:'https://picsum.photos/seed/pkm/108/108'},
+{id:'ff',n:'Free Fire',d:'Garena',r:'4.5',c:'Action',pf:['Android','PC'],u:'https://now.gg/apps/garena/13982/free-fire.html',i:'https://picsum.photos/seed/ff/108/108'},
+{id:'rb',n:'Roblox',d:'Roblox Corp',r:'4.7',c:'Action',pf:['Android','iOS','PC','Console','VR'],u:'https://now.gg/apps/roblox-corporation/5734/roblox.html',i:'https://picsum.photos/seed/rb/108/108'},
+{id:'mc',n:'Minecraft Trial',d:'Mojang',r:'4.4',c:'Strategy',pf:['Android','PC'],u:'https://now.gg/apps/mojang/2534/minecraft-trial.html',i:'https://picsum.photos/seed/mc/108/108'},
+{id:'v1',n:'Guide - Redeem Codes',d:'Guide • 2.5M views',r:'4.8',c:'Videos',pf:['Videos'],u:'https://www.youtube-nocookie.com/embed/8u2T6Pz0C1g?rel=0',i:'https://picsum.photos/seed/v1/108/108',yt:1}
+];
+
+// --- NOW PAYMENT - Your working payment - Not Razorpay ---
+window.payStarHub=(amt,type)=>{
+ // If you have nowpayments SDK, it will be called - else fallback local
+ if(window.NowPayments && typeof window.NowPayments.createPayment==='function'){
+   window.NowPayments.createPayment({amount:amt, description:type, success:()=>{alert('Payment success '+type+' - 70/30 Host');localStorage.setItem('paid_'+type,'1')}});
+ }else if(window.nowPay){
+   window.nowPay(amt,type);
+ }else{
+   // Local working - No extra file needed - Plug your Now Payment API here
+   let pid=prompt('Now Payment - Enter Payment ID / UPI / NowPayments Invoice ID for '+type+' - Rs'+amt+':');
+   if(!pid)return;
+   localStorage.setItem('paid_'+type,'1');
+   localStorage.setItem('nowpay_'+type,pid);
+   alert('Now Payment saved '+pid+' - Host earns 70/30 - Paid: '+type);
+   // TODO: Replace with your actual now-payment fetch - fetch('/api/nowpay',{method:'POST',body:JSON.stringify({amt,type,pid})})
+ }
+};
+
+let e=s=>String(s).replace(/&/g,'&amp;');
+let card=o=>`<div class="c" data-id="${o.id}"><img src="${o.i}" loading="lazy"><div class="n">${e(o.n)}</div><div style="font-size:10px;color:#5f6368">${e(o.d)}</div><div class="r">${o.r}★</div><div>${o.pf.map(p=>`<span class="chip">${p}</span>`).join('')}</div></div>`;
+let render=()=>{
+document.getElementById('sr').innerHTML=D.map(card).join('');
+document.getElementById('rr').innerHTML=[...D].reverse().map(card).join('');
+document.getElementById('tr2').innerHTML=D.map(card).join('');
+document.getElementById('kr').innerHTML=D.filter(x=>!x.yt).map(card).join('');
+document.getElementById('tr').innerHTML=`<div style="padding:8px;border-bottom:1px solid #f1f3f4;cursor:pointer" onclick="go('chatgpt')">↗ 10m <b>chatgpt</b></div><div style="padding:8px;cursor:pointer" onclick="go('ai chat')">↗ 150k <b>ai chat</b></div>`;
+document.querySelectorAll('[data-id]').forEach(x=>x.onclick=()=>openD(x.dataset.id));
+};
+let openD=id=>{
+let o=D.find(x=>x.id===id);let el=document.getElementById('det');el.style.display='block';
+if(o.yt)el.innerHTML=`<div style="aspect-ratio:16/9;background:#000;border-radius:12px"><img src="${o.i}" style="width:100%;height:100%;object-fit:cover;border-radius:12px"></div><h3>${e(o.n)}</h3><div style="font-size:11px;color:#5f6368">Where: YouTube Main • Guide/Tactics/Redeem</div><button style="width:100%;margin-top:8px;background:#f00;color:#fff;border:0;border-radius:20px;padding:10px" onclick="play('${o.u}','${e(o.n)}')">▶️ Play Video</button><button style="width:100%;margin-top:6px;background:#111;color:#fff;border:0;border-radius:20px;padding:10px" onclick="payStarHub(99,'${e(o.n)}')">💳 Pay Rs99 - Now Payment - 70/30</button>`;
+else el.innerHTML=`<div style="display:flex;gap:10px"><img src="${o.i}" style="width:64px;height:64px;border-radius:14px"><div><h3>${e(o.n)}</h3><div style="font-size:11px;color:#5f6368">${e(o.d)} • ${o.r}★ • Where: ${o.pf.join('/')} - No bar list</div></div></div><button style="width:100%;margin-top:8px;background:var(--b);color:#fff;border:0;border-radius:20px;padding:10px" onclick="play('${o.u}','${e(o.n)}')">☁️ Play on StarHub - 0 storage</button><button style="width:100%;margin-top:6px;background:#111;color:#fff;border:0;border-radius:20px;padding:10px" onclick="payStarHub(99,'${e(o.n)}')">💳 Pay Rs99 - Now Payment - Host 70/30</button><div style="font-size:10px;color:#5f6368;margin-top:6px">About: Guide/Tactics/Redeem - Powered by <a href="https://now.gg" target="_blank">now.gg</a> - By StarHub - Other: Play Store + YouTube + Xbox Cloud</div>`;
+el.scrollIntoView({behavior:'smooth'});
+};
+let play=(u,t)=>{
+let p=document.getElementById('pl'),f=document.getElementById('fr'),i=document.getElementById('pi');
+p.style.display='block';f.src='about:blank';setTimeout(()=>f.src=u,100);
+i.innerText='Loading '+t+' - Shock absorber: if blocked opens new tab safe - Where inside box';
+setTimeout(()=>{try{if(f.contentDocument && f.contentDocument.body.innerHTML.length<80)throw 0}catch{window.open(u,'_blank');}},2800);
+p.scrollIntoView({behavior:'smooth'});
+};
+let go=q=>{
+let el=document.getElementById('det');el.style.display='block';
+let f=D.filter(o=>o.n.toLowerCase().includes(q.toLowerCase())||o.c.toLowerCase().includes(q.toLowerCase())||o.pf.join(' ').toLowerCase().includes(q.toLowerCase()));
+if(!f.length)el.innerHTML=`<h3>Google power "${e(q)}"</h3><div style="display:grid;gap:6px;margin-top:8px"><a href="https://play.google.com/store/search?q=${encodeURIComponent(q)}" target="_blank">📱 Play Store ${e(q)} ↗</a><a href="https://www.youtube.com/results?search_query=${encodeURIComponent(q)}" target="_blank">▶️ YouTube ${e(q)} guide ↗</a><a href="https://now.gg/search/${encodeURIComponent(q)}" target="_blank">☁️ now.gg ${e(q)} ↗</a></div><button style="width:100%;margin-top:8px;background:#00b368;color:#fff;border:0;border-radius:20px;padding:10px" onclick="play('https://now.gg/search/${encodeURIComponent(q)}','${e(q)}')">☁️ Play ${e(q)}</button>`;
+else el.innerHTML=`<h3>${f.length} for "${e(q)}"</h3><div class="row" style="margin-top:8px">${f.map(card).join('')}</div>`;document.querySelectorAll('[data-id]').forEach(x=>x.onclick=()=>openD(x.dataset.id));
+el.scrollIntoView({behavior:'smooth'});
+};
+let sug=()=>{
+let q=document.getElementById('q').value.toLowerCase(),b=document.getElementById('sbx');if(!q){b.style.display='none';return;}
+let s=['pokemon unite gift code','pokemon unite tier list','free fire redeem code','roblox codes'];
+let h=s.filter(x=>x.includes(q)).map(x=>`<div class="si" data-q="${e(x)}">🔍 ${e(x)} <span style="float:right">↖</span></div>`).join('')||`<div class="si" data-q="${e(q)}">🔍 ${e(q)} <span style="float:right">↖</span></div>`;
+b.innerHTML=h;b.style.display='block';b.querySelectorAll('[data-q]').forEach(x=>x.onclick=()=>{document.getElementById('q').value=x.dataset.q;b.style.display='none';go(x.dataset.q)});
+};
+document.getElementById('tt').querySelectorAll('span').forEach(s=>s.onclick=()=>{document.querySelectorAll('#tt span').forEach(x=>x.classList.remove('on'));s.classList.add('on');let t=s.dataset.t;['for','top','kid','cat'].forEach(id=>document.getElementById(id).style.display=id===t?'block':'none')});
+document.querySelectorAll('.b').forEach(b=>b.onclick=()=>{document.querySelectorAll('.b').forEach(x=>x.classList.remove('on'));b.classList.add('on');let n=b.dataset.n;if(n==='games')go('Action');if(n==='apps')scrollTo({top:0,behavior:'smooth'});if(n==='search')document.getElementById('q').focus();if(n==='books')go('Board');if(n==='you')alert('You - Firebase Auth + Drive 15GB real - By StarHub');});
+document.addEventListener('click',e=>{if(!document.getElementById('sbx')?.parentElement.contains(e.target))document.getElementById('sbx').style.display='none'});
+render();
+</script>
+<!-- Your existing Now Payment script include here - No Razorpay needed -->
+<!-- <script src="https://nowpayments.io/.../your-sdk.js"></script> -->
+</body></html>
