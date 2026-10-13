@@ -1,0 +1,19 @@
+{
+  "name": "STARHUB WORLD - starhubigdb.pages.dev",
+  "short_name": "STARHUB",
+  "description": "100+ Games - Crystal Star Icon - Future Auto Auth - Free Shift",
+  "start_url": "/",
+  "scope": "/",
+  "display": "standalone",
+  "background_color": "#0a0f2c",
+  "theme_color": "#1a73e8",
+  "icons": [
+    {"src": "/icon-192.png","sizes": "192x192","type": "image/png","purpose": "any maskable"},
+    {"src": "/icon-512.png","sizes": "512x512","type": "image/png","purpose": "any maskable"},
+    {"src": "/icon-108.png","sizes": "108x108","type": "image/png"},
+    {"src": "/icon-32.png","sizes": "32x32","type": "image/png"},
+    {"src": "/icon-16.png","sizes": "16x16","type": "image/png"},
+    {"src": "https://avatars.githubusercontent.com/u/parthanathchandra-lang?v=4&s=192","sizes": "192x192","type": "image/png"},
+    {"src": "https://avatars.githubusercontent.com/u/parthanathchandra-lang?v=4&s=512","sizes": "512x512","type": "image/png"}
+  ]
+}
