@@ -1,0 +1,2 @@
+// Need basis ping only Render+Gofile not 8 domains - Save 5x power - Adaptability availability
+(function(){async function best(){const ds=["starhubigdp.vercel.app","starhubigdb.pages.dev"];let b=ds[0];try{await fetch(`https://${ds[0]}/ping.txt`,{cache:'no-store',mode:'no-cors',signal:AbortSignal.timeout(1500)});}catch{}localStorage.setItem('best_domain',b);if(navigator.connection?.saveData)document.documentElement.classList.add('low-data');}best();setInterval(best,8000);})();
