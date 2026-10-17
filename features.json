@@ -1,24 +1,79 @@
 {
-  "version": "v1",
+  "version": "v2-universal-dynamic",
   "updated": "2026-10-17",
-  "features": [
+  "engine": "AUTO Best - Universal - Real Only - Future Proof - Never Lower",
+  "source_types": ["playstore", "youtube", "google", "steam"],
+  "items": [
     {
+      "id": "unite_001",
+      "type": "playstore",
+      "real": true,
       "name": "Pokémon UNITE",
       "dev": "The Pokémon Company",
-      "link": "https://play.google.com/store/apps/details?id=jp.pokemon.pokemonunite",
-      "rights": "Rights: Pokémon Company • Host: Play Store"
+      "handle": "Verified Host",
+      "rating": "4.3",
+      "reviews": "523K",
+      "size": "523 MB",
+      "downloads": "10M+",
+      "cat": "Action MOBA",
+      "icon": "https://images.unsplash.com/photo-1550745165-9bc0b252726f?w=200",
+      "screens": ["https://images.unsplash.com/photo-1511512578047-dfb367046420?w=400"],
+      "about": "Free-to-play MOBA, 5v5, Cross-platform",
+      "rights": "Rights: The Pokémon Company",
+      "host": "Host: Play Store, App Store, Switch - Real",
+      "features": ["Free", "Cross-play", "Child Safe"],
+      "link_install": "https://play.google.com/store/apps/details?id=jp.pokemon.pokemonunite",
+      "link_yt": "https://www.youtube.com/results?search_query=pokemon+unite+guide",
+      "status": "live"
     },
     {
-      "name": "Flareon Moves Overview",
+      "id": "video_001",
+      "type": "youtube",
+      "real": true,
+      "name": "Flareon Moves Overview | Pokémon UNITE",
       "dev": "PokeBunny",
-      "link": "https://www.youtube.com/results?search_query=flareon+moves+overview",
-      "rights": "Rights: Creator • Host: YouTube"
+      "handle": "@pokebunny1",
+      "subs": "29.6k",
+      "views": "59k views • 7 days ago",
+      "time": "2:17",
+      "cat": "Gaming Guide",
+      "thumb": "https://images.unsplash.com/photo-1612036782180-6f0b6cd846fe?w=800",
+      "av": "https://images.unsplash.com/photo-1535713875002-d1d0cf377fde?w=100",
+      "desc": "Flareon build, moves, tips - Solutions",
+      "rights": "Rights: Creator PokeBunny",
+      "host": "Host: YouTube - Real",
+      "features": ["Guide", "Solutions"],
+      "link_watch": "https://www.youtube.com/results?search_query=flareon+moves+overview",
+      "status": "live"
     },
     {
+      "id": "ffmax_001",
+      "type": "playstore",
+      "real": true,
       "name": "Free Fire MAX",
       "dev": "Garena",
-      "link": "https://play.google.com/store/apps/details?id=com.dts.freefiremax",
-      "rights": "Rights: Garena • Host: Play Store"
+      "rating": "4.5",
+      "reviews": "1.2M",
+      "size": "950 MB",
+      "downloads": "100M+",
+      "cat": "Battle Royale",
+      "icon": "https://images.unsplash.com/photo-1511512578047-dfb367046420?w=200",
+      "rights": "Rights: Garena",
+      "host": "Host: Play Store - Real",
+      "features": ["Free", "Battle Royale"],
+      "link_install": "https://play.google.com/store/apps/details?id=com.dts.freefiremax",
+      "status": "live"
     }
-  ]
+  ],
+  "config": {
+    "auto_fetch_hours": 6,
+    "fallback": "curated_real",
+    "paid_enabled": false,
+    "no_cookie": true,
+    "universal": true,
+    "dynamic": true,
+    "real_only": true,
+    "never_lower": true,
+    "future_auto_add": true
+  }
 }
