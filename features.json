@@ -1,0 +1,24 @@
+{
+  "version": "v1",
+  "updated": "2026-10-17",
+  "features": [
+    {
+      "name": "Pokémon UNITE",
+      "dev": "The Pokémon Company",
+      "link": "https://play.google.com/store/apps/details?id=jp.pokemon.pokemonunite",
+      "rights": "Rights: Pokémon Company • Host: Play Store"
+    },
+    {
+      "name": "Flareon Moves Overview",
+      "dev": "PokeBunny",
+      "link": "https://www.youtube.com/results?search_query=flareon+moves+overview",
+      "rights": "Rights: Creator • Host: YouTube"
+    },
+    {
+      "name": "Free Fire MAX",
+      "dev": "Garena",
+      "link": "https://play.google.com/store/apps/details?id=com.dts.freefiremax",
+      "rights": "Rights: Garena • Host: Play Store"
+    }
+  ]
+}
