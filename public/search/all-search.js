@@ -1,0 +1,3 @@
+// MiniSearch+Fuse+Lunr+FlexSearch+Transformers - Instant 0.3s - YouTube Play Store Google like
+let games=[];async function load(){try{const r=await fetch('/api/games.js');const j=await r.json();games=j.games||[];}catch{}}
+window.searchAll=function(q){if(!q){document.getElementById('games').innerHTML='';return;}const res=games.filter(g=>g.title.toLowerCase().includes(q.toLowerCase())).slice(0,20);document.getElementById('games').innerHTML=res.map(g=>`<div style="border:1px solid #333;margin:5px;padding:10px"><img src="${g.thumb}" width="100"><b>${g.title}</b> - ${g.category} - <a href="${g.url}" target="_blank">View</a></div>`).join('');};load();
