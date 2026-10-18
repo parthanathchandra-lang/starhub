@@ -1,1 +1,51 @@
-{"name":"StarHub - PATH 5 Most Best","short_name":"StarHub","description":"Best Web - Auto Universal - Free Only Locked - No transaction - Affiliate only + Donation QR - Generic Ethical Ads Placeholder - Adaptability Availability - Real safe","start_url":"/","display":"standalone","background_color":"#0a0a0a","theme_color":"#00ff88","icons":[{"src":"/icon-512.png","sizes":"512x512","type":"image/png"}]}
+{
+  "name": "StarHub - Best Advance - PATH 5 Most Best - Human Easy 3 Click - Play Store YouTube Google Pinterest Brave - Future Proof Never Lower",
+  "short_name": "StarHub Best Advance",
+  "description": "Best Web - PATH 5 Most Best - Auto Universal - Free Only Locked - No transaction - Affiliate only + Donation QR - Generic Ethical Ads Placeholder - Adaptability Availability - Real Safe - Human Psychology Easy - Play Store Icon + Screenshots + YouTube Thumbnail + Google Search + Pinterest Masonry + Brave No Cookie + Creator Studio + Safety Best Extract - Auto Universal Free Survival - Future Proof Never Lower - Icon GitHub icon-512.png starhubigdp crystal star main - Owner Not Stress",
+  "start_url": "/index.html",
+  "display": "standalone",
+  "background_color": "#ffffff",
+  "theme_color": "#01875f",
+  "orientation": "portrait-primary",
+  "scope": "/",
+  "icons": [
+    {
+      "src": "/icon-512.png",
+      "sizes": "512x512",
+      "type": "image/png",
+      "purpose": "any maskable"
+    },
+    {
+      "src": "/icon-512.png",
+      "sizes": "192x192",
+      "type": "image/png",
+      "purpose": "any"
+    },
+    {
+      "src": "/icon-512.png",
+      "sizes": "96x96",
+      "type": "image/png",
+      "purpose": "any"
+    }
+  ],
+  "shortcuts": [
+    {
+      "name": "Games - Play Store Best",
+      "url": "/index.html?filter=playstore",
+      "icons": [{ "src": "/icon-512.png", "sizes": "96x96" }]
+    },
+    {
+      "name": "Videos - YouTube Best",
+      "url": "/index.html?filter=youtube",
+      "icons": [{ "src": "/icon-512.png", "sizes": "96x96" }]
+    },
+    {
+      "name": "Creator Studio - Upload Best",
+      "url": "/index.html#creator",
+      "icons": [{ "src": "/icon-512.png", "sizes": "96x96" }]
+    }
+  ],
+  "categories": ["games", "entertainment", "utilities"],
+  "lang": "en",
+  "dir": "ltr"
+}
