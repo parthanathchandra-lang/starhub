@@ -1,12 +1,12 @@
-name: ULTIMATE ADVANCE - 1 FILE = SAB KUCH AUTO - Index.html Se Sab Banega + Deploy All Mirrors + Keep-Alive - Universal Free
+name: ULTIMATE ADVANCE - 1 FILE = SAB KUCH AUTO - Index.html Se Sab Banega + Deploy All Mirrors + Keep-Alive - Universal Free - Owner Not Stress - Future Proof Never Lower
 
 on:
   push:
     branches: ['**']
     paths: ['index.html']
   schedule:
-    - cron: '0 */6 * * *'   # Har 6h auto improve - Index.html se files auto banega
-    - cron: '*/14 * * * *'  # Har 14 min keep-alive ping
+    - cron: '0 */6 * * *'
+    - cron: '*/14 * * * *'
   workflow_dispatch:
 
 concurrency:
@@ -20,7 +20,6 @@ jobs:
       - uses: actions/checkout@v4
         with: {fetch-depth: 0, token: ${{ secrets.GH_PAT || secrets.GITHUB_TOKEN }}}
       
-      # STEP 1: AUTO_SPLIT - Index.html se sab files auto banega - vercel.json + api/ + workflow yaml bhi
       - name: AUTO_SPLIT - 1 FILE index.html = 32+ FILES AUTO - vercel.json andar + workflow yaml bhi andar - Future Me Auto Banta Rahega
         run: |
           cat > /tmp/u.mjs <<'JS'
@@ -29,7 +28,7 @@ jobs:
           const re=/<!-- AUTO_SPLIT:FILE=(.+?):TYPE=(.+?):WHY=(.+?) -->([\s\S]*?)<!-- CODE END -->/g;
           let m, files=[], branch=process.env.GITHUB_REF_NAME||'any-patch';
           const count=Math.floor(Date.now()/21600000);
-          console.log(`\n=== 1 FILE = SAB KUCH AUTO - Index.html Se Sab Banega - BRANCH ${branch} - Improve #${count} - Update Create Jo Hona Chahiye Hoga Auto ===\n`);
+          console.log(`\n=== 1 FILE = SAB KUCH AUTO - BRANCH ${branch} - Improve #${count} - Update Create Jo Hona Chahiye Hoga Auto ===\n`);
           while((m=re.exec(html))!==null){
             let f=m[1].trim(); 
             if(!f.includes('.')) f+=f.includes('manifest')||f.includes('vercel')?'.json':'.js';
@@ -52,32 +51,27 @@ jobs:
               }
               const uniq=code.split('\n').filter(l=> l.trim() && !old.includes(l.trim()));
               if(uniq.length){
-                fs.writeFileSync(f,old+`\n// 1_FILE_SAB_KUCH_AUTO #${count} OLD+NEW=Best Never Lower - Future Me Auto Banta Rahega\n`+uniq.join('\n'));
+                fs.writeFileSync(f,old+`\n// 1_FILE_SAB_KUCH_AUTO #${count} OLD+NEW=Best Never Lower\n`+uniq.join('\n'));
                 files.push(f); console.log(`✅ IMPROVED UPDATE - ${f} - ${uniq.length} new`);
               }
             }
           }
           const extras=[
-            ['api/ping.js',`export default (req,res)=>res.send('alive '+Date.now()+' - 1 FILE = SAB KUCH AUTO - Improve #${count}');`],
-            ['public/ping.txt',`vercel.app\npages.dev\nsurge.sh\ngithub.io\nis-a.dev Approved\njs.org Approved\n eu.org Approved\nstarhub.is-a.dev\nstarhub.js.org\nstarhub.eu.org\n27b best domain auto - Improve #${count} - Kabhi update nahi karna padega`],
             ['api/auto-improve-loop.js',`export default (req,res)=>{const c=Math.floor(Date.now()/21600000); res.json({ultimate_best:true,never_update_ever:true,sab_kuch_ha:true,workflow_yaml_bhi_andar:true,future_me_auto_banta_rahega:true,update_create_jo_hona_chahiye_hoga_auto:true,improve_count:c});}`],
-            ['f-droid.json',`{"foss":true,"free_only":true,"paid":false,"ban_0":true,"ultimate_best":true,"never_update_ever":true,"sab_kuch_ha":true,"workflow_yaml_bhi_andar":true}`]
           ];
           for(let [p,c] of extras){if(!fs.existsSync(p)){const d=p.split('/').slice(0,-1).join('/'); if(d) fs.mkdirSync(d,{recursive:true}); fs.writeFileSync(p,c); files.push(p);} }
-          console.log(`\nTOTAL ${files.length} FILES - 1 FILE = SAB KUCH AUTO - Index.html Se Sab Banega - Improve #${count}\n`);
+          console.log(`\nTOTAL ${files.length} FILES - 1 FILE = SAB KUCH AUTO - Improve #${count}\n`);
           JS
           node /tmp/u.mjs
 
-      # STEP 2: COMMIT - Update create jo hona chahiye hoga auto - Old+New=Best Never Lower
-      - name: Commit - Update Create Jo Hona Chahiye Hoga Auto - Old+New=Best Never Lower - Sab Kuch Ha
+      - name: Commit - Update Create Jo Hona Chahiye Hoga Auto - Old+New=Best Never Lower - Sab Kuch Ha - No Conflict No Purpose Change
         run: |
           git config user.name "1 FILE = SAB KUCH AUTO" && git config user.email "auto@starhubigdp.vercel.app"
           BRANCH=$(git rev-parse --abbrev-ref HEAD)
           COUNT=$(($(date +%s)/21600))
           git add .
-          git diff --cached --quiet || git commit -m "1 FILE = SAB KUCH AUTO - Index.html Se Sab Banega - Branch $BRANCH - Improve #$COUNT - vercel.json api/ performance.js manifest.json domains/ cnames-active/ .github/workflows/ sab auto - Update Create Jo Hona Chahiye Hoga Auto - Future Me Auto Banta Rahega - Kabhi update nahi karna padega" && git push origin $BRANCH || true
+          git diff --cached --quiet || git commit -m "1 FILE = SAB KUCH AUTO - Index.html Se Sab Banega - Branch $BRANCH - Improve #$COUNT - vercel.json api/ performance.js manifest.json domains/ cnames-active/ public/ping.txt f-droid.json sab auto - No Conflict - No Purpose Change - FREE_ONLY PAID=false Locked - Update Create Jo Hona Chahiye Hoga Auto - Future Me Auto Banta Rahega - Kabhi update nahi karna padega" && git push origin $BRANCH || true
 
-      # STEP 3: DEPLOY ALL MIRRORS - Generic Safe - Owner Not Stress - Future Proof Never Lower - Jo tune diya usi ka best
       - name: Deploy to Cloudflare Pages - Generic Safe - Sab Kuch Ha
         if: ${{ secrets.CF_API_TOKEN != '' && github.event_name != 'schedule' }}
         uses: cloudflare/pages-action@v1
@@ -92,7 +86,7 @@ jobs:
         run: |
           npm i -g vercel@latest
           vercel --prod --yes --token ${{ secrets.VERCEL_TOKEN }}
-          echo "Vercel Deployed - framework null auto fix - 404 gone - 1 FILE = SAB KUCH AUTO - Index.html Se Sab Banega"
+          echo "Vercel Deployed - framework null auto fix - 404 gone - 1 FILE = SAB KUCH AUTO"
 
       - name: Deploy to Firebase - Generic Safe
         if: ${{ secrets.FIREBASE_SERVICE_ACCOUNT != '' && github.event_name != 'schedule' }}
@@ -113,14 +107,13 @@ jobs:
       - name: Deploy to Render - Hook - Generic Safe - Owner Not Stress
         if: ${{ secrets.RENDER_DEPLOY_HOOK_URL != '' && github.event_name != 'schedule' }}
         run: |
-          curl -X POST "${{ secrets.RENDER_DEPLOY_HOOK_URL }}" --max-time 15 || echo "Render Hook skip - Safe - Auto toggle ON - Owner not stress - Sab Kuch Ha"
+          curl -X POST "${{ secrets.RENDER_DEPLOY_HOOK_URL }}" --max-time 15 || echo "Render Hook skip - Safe - Auto toggle ON - Owner not stress"
 
-      # STEP 4: KEEP-ALIVE - Need basis only - Save 5x power - Adaptability Availability - Jo tune diya usi ka best
       - name: Ping sleeps:true hosts - Need basis only - Save 5x power - Future Proof Never Lower - Owner Not Stress
         run: |
           python3 -c "
           import re, urllib.request
-          print('=== 1 FILE = SAB KUCH AUTO - Index.html Se Sab Banega + Deploy All Mirrors + Keep-Alive - Sab Kuch Ha ===')
+          print('=== 1 FILE = SAB KUCH AUTO - Index.html Se Sab Banega + Deploy All Mirrors + Keep-Alive - Sab Kuch Ha - No Conflict No Purpose Change ===')
           text=''
           try: text=open('index.html',encoding='utf-8',errors='ignore').read()
           except: pass
@@ -134,12 +127,12 @@ jobs:
               if u: urls.append(u.group(1))
           if not urls:
             urls=['https://starhubigdp.onrender.com/ping.txt','https://starhubigdp.vercel.app/public/ping.txt','https://starhubigdp.vercel.app/ping.txt','https://starhubigdp.pages.dev/ping.txt']
-          print(f'Ping {len(urls)} URLs - Need basis only - Save 5x power - Sab Kuch Ha - Index.html Se Sab Banega')
+          print(f'Ping {len(urls)} URLs - Need basis only - Save 5x power - No Conflict')
           for url in urls:
             try:
               urllib.request.urlopen(url,timeout=15).read(50)
-              print(f'OK Free - {url} - Power not lower - Sab Kuch Ha')
+              print(f'OK Free - {url} - Power not lower - No Conflict No Purpose Change')
             except Exception as e:
               print(f'SKIP Free - {url} - Auto toggle ON - Safe - Owner not stress - {e}')
-          print('Free basis - No transaction - Auto organised - Future proof never lower - Icon GitHub main - All mirrors best - 1 FILE = SAB KUCH AUTO - Index.html Se Sab Banega - Kabhi update nahi karna padega')
+          print('Free basis - No transaction - Auto organised - Future proof never lower - 1 FILE = SAB KUCH AUTO - Kabhi update nahi karna padega - No Conflict - No Purpose Change')
           "
