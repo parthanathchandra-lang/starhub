@@ -1,9 +1,0 @@
-# Dockerfile - FINAL - Production-ready - Zero storage
-FROM node:20-alpine
-WORKDIR /app
-COPY package*.json ./
-RUN npm install --production || true
-COPY . .
-EXPOSE 3000
-CMD ["node", "server.js"]
-# Best - Storage zero - Heavy zero
