@@ -1,0 +1,21 @@
+{
+  "name": "Starhub - Worlds Best Web - 122+ 133± Whole Year 2026",
+  "short_name": "Starhub",
+  "description": "Worlds Best Web - Free Only - No Cookie - DPDP GDPR - Storage Zero Heavy Zero Speed Unlimited - 100000 Files - 122+ 133± Filter",
+  "start_url": "/",
+  "display": "standalone",
+  "background_color": "#000000",
+  "theme_color": "#00ff88",
+  "icons": [
+    { "src": "/icon.png", "sizes": "192x192", "type": "image/png" },
+    { "src": "/icon.png", "sizes": "512x512", "type": "image/png" }
+  ],
+  "categories": ["entertainment","productivity","utilities"],
+  "free_only": true,
+  "paid_enabled": false,
+  "storage": "zero",
+  "heavy": "zero",
+  "speed": "unlimited",
+  "range": "122+ 133±",
+  "year": 2026
+}
