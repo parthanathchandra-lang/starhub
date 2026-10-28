@@ -1,0 +1,8 @@
+User-agent: *
+Allow: /
+Sitemap: https://starhubigdp.vercel.app/sitemap.xml
+Disallow: /api/*?*gambling*
+Disallow: /api/*?*casino*
+Disallow: /api/*?*betting*
+Disallow: /api/*?*adult*
+# Worlds Best Web - 122+ 133± Whole Year 2026 - SEO Best - DONE
