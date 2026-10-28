@@ -1,0 +1,17 @@
+{
+  "name": "StarHub - Worlds Best Web - 122+ 133±",
+  "short_name": "StarHub",
+  "description": "Worlds Best Web - Free Only - 122+ 133± Whole Year 2026 - 100000 Files - Storage Zero - Speed Unlimited - Best Power",
+  "start_url": "/",
+  "display": "standalone",
+  "background_color": "#000000",
+  "theme_color": "#00ff88",
+  "icons": [
+    {
+      "src": "/icon.svg",
+      "sizes": "512x512",
+      "type": "image/svg+xml",
+      "purpose": "any maskable"
+    }
+  ]
+}
