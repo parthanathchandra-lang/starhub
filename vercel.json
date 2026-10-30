@@ -12,7 +12,11 @@
         { "key": "X-No-Ping", "value": "true" },
         { "key": "X-Secretly", "value": "true" },
         { "key": "X-Private-Protection-Universal", "value": "true" },
-        { "key": "X-Owner-Net-Off-Working", "value": "true" }
+        { "key": "X-Owner-Net-Off-Working", "value": "true" },
+        { "key": "X-Unspecified-Universal", "value": "true" },
+        { "key": "X-Any-Problem-Auto", "value": "true" },
+        { "key": "X-Global-Law-Auto", "value": "true" },
+        { "key": "X-Feature-Right", "value": "true" }
       ]
     }
   ]
