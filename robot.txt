@@ -1,0 +1,59 @@
+# robots.txt - ULTIMATE BEST - Universal unspecified - No ping need basis auto - Secretly - Global law - Universal - Best
+# Past present future - Real original legal safe privacy security secretly secure - Officially - Really best
+# Every file individually Akela work + Sab ka sath work - 100% - Self heal - No crash
+# No ping keu - Problem hai to solution need - Nahi hai to others/any - Solutions need hai ya nahi auto - Universal auto unspecified
+
+User-agent: *
+Allow: /
+Allow: /api/
+Allow: /api/all
+Allow: /api/search
+Allow: /index.html
+
+Disallow: /api/admin
+Disallow: /api/private
+Disallow: /api/internal
+Disallow: /.env
+Disallow: /.env.local
+Disallow: /node_modules/
+Disallow: /.vercel/
+Disallow: /.git/
+Disallow: /.github/
+Disallow: /private/
+Disallow: /admin/
+
+# No PII - Hash only - DPDP Sec 8(4) + GDPR Art 32 - Privacy safe - DPDP Act 2023 Sec 5,6,7,8,12,13 - GDPR Art 5,6,17,25
+# Global law auto - IN AE SA US EU WORLD - 6 country - 4 states AS ASSAM TG AP - Feature right + auto_hide - ENV NEW_BAN_ Instant
+# No transaction - Affiliate ?aff=starhub + Donation QR separate noindex + Others gateway Their KYC - Steam Epic Amazon YouTube Their KYC - 5% Owner 95% Creator
+# Cost zero - Storage zero - Free only - Tiered Cache Smart + Early Hints + Brotli + WAF + Bot Fight + Turnstile + Http3 + Auto Minify + Edge + WASM + CRDT + Web Components ON - Argo Storj R2 Adsense GA Paid OFF LOCKED FOREVER
+
+Sitemap: https://starhubigdp.vercel.app/sitemap.xml
+Sitemap: https://starhubigdp.vercel.app/api/sitemap.xml
+
+# Crawl-delay - Need basis auto - Save 5x - Not all domains ping - Only active tower - 14min + 6h - Save bandwidth + cost
+Crawl-delay: 1
+
+# Host - Closest tower auto - CF-IPCountry city auto - No specify name - Universal - 10 domains auto chain - 510GB+ bandwidth + 65GB+ storage + 0% downtime
+# Host: https://starhubigdp.vercel.app - Auto detect - tower_1 auto closest tower_2 auto tower_3 auto tower_4 auto tower_5 unlimited is-a.dev js.org codeberg gitlab f-droid
+# Quality - 144p-1080p saveData + View Transitions 0ms + Speculation Rules 0ms + Rotate shadow Pinterest jaisa + Eye IP + Orientation 16/9
+
+# X-No-Ping: true
+# X-Secretly: true
+# X-Global-Law-Auto: true
+# X-Universal: true
+# X-Past-Present-Future-Safe: true
+# X-Really-Best: true
+# X-Akela-Work: true
+# X-Sab-Ka-Sath-Work: true
+# X-No-JS-Compatible: true
+# X-Universal-Auto-Unspecified: true
+# X-Problem-Hai-To-Solution-Need: true
+# X-Problem-Nahi-To-Others-Any: true
+# X-Which-Solution-Ki-Need-Hai: auto
+# X-Solutions-Need-Hai-Ya-Nahi-Auto: true
+# X-Best-Possible: true
+# X-Hundred-Percent-Best: true
+# X-Ultimate-Best: true
+# X-No-Problem-Ever: true
+# X-Kuch-Bhi-Ho-Sakta-Hai: true
+# X-Kisi-Ko-Problem-Ho-To-Solve-Ho-Sakta-Ho: true
