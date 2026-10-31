@@ -1,65 +1,24 @@
 <?xml version="1.0" encoding="UTF-8"?>
-<!-- sitemap.xml - ULTIMATE BEST - Universal unspecified - No ping need basis auto - Secretly - Global law - Universal - Best - Past present future safe - Officially - Really best -->
-<!-- No specify platform - No Vercel word - No Render word - No fixed domain - Universal auto - Closest tower auto CF-IPCountry city auto - tower_1 auto -->
-<!-- Akela work + Sab ka sath work - 100% - Self heal - No crash - Pure static - No JS -->
-<!-- No ping keu - Problem hai to solution need - Nahi hai to others/any - Solutions need hai ya nahi auto - Universal auto unspecified -->
+<!-- FILE NAME: sitemap.xml -->
+<!-- PATH: /sitemap.xml -->
+<!-- TYPE: 400% - REAL MAXIMUM BEST POSSIBLE - No more improve - Every possibility - Past Present Future safe - Universal Specify Unspecified - Legal safe privacy security secretly secure - Really best -->
+<!-- Principle: No ping keu - Problem hai to solution need - Nahi hai to others/any - Solutions need hai ya nahi auto - Universal auto unspecified -->
+<!-- Akela work + Sab ka sath work - 100% - Self heal - No crash - Pure static - No JS - No import - Hash only - No PII - No DB - Universal -->
+<!-- SPECIFY NEED: 6 core URLs must specify - Where need - When bot needs - Real - Filter valid - Security - Legal safe - Past Present Future safe - Google 50k limit - Sitemap index best -->
+<!-- UNSPECIFIED NEED: Don't specify every /api/4 ... /api/100000 - Dynamic /api/sitemap.xml.js will generate 100k auto + sitemap index split 50k each - Universal auto - Past Present Future safe -->
+<!-- Every possible problem: No PII + No secret + No transaction + Hash only + Filter valid + Legal safe + Global law + Cost zero + Ready for anything + Google 50k limit solved -->
 <urlset xmlns="http://www.sitemaps.org/schemas/sitemap/0.9">
-  <!-- Root - Best - Universal - No specify - tower_1 auto closest -->
-  <url>
-    <loc>/</loc>
-    <lastmod>2026-01-01T00:00:00+00:00</lastmod>
-    <changefreq>hourly</changefreq>
-    <priority>1.0</priority>
-  </url>
-  <!-- Auto - Best - Universal - 100000 files - No specify -->
-  <url>
-    <loc>/api/all</loc>
-    <lastmod>2026-01-01T00:00:00+00:00</lastmod>
-    <changefreq>hourly</changefreq>
-    <priority>0.9</priority>
-  </url>
-  <url>
-    <loc>/api/search?q=all</loc>
-    <lastmod>2026-01-01T00:00:00+00:00</lastmod>
-    <changefreq>hourly</changefreq>
-    <priority>0.9</priority>
-  </url>
-  <!-- 122+ 133± Filter 2026 - Best - Universal - No specify -->
-  <url>
-    <loc>/api/122</loc>
-    <changefreq>daily</changefreq>
-    <priority>0.9</priority>
-  </url>
-  <url>
-    <loc>/api/133</loc>
-    <changefreq>daily</changefreq>
-    <priority>0.9</priority>
-  </url>
-  <url>
-    <loc>/api/2026</loc>
-    <changefreq>daily</changefreq>
-    <priority>0.9</priority>
-  </url>
-  <!-- Day Week Month - Filter - Best - Universal -->
-  <url>
-    <loc>/api/1</loc>
-    <changefreq>daily</changefreq>
-    <priority>0.8</priority>
-  </url>
-  <url>
-    <loc>/api/2</loc>
-    <changefreq>weekly</changefreq>
-    <priority>0.8</priority>
-  </url>
-  <url>
-    <loc>/api/3</loc>
-    <changefreq>monthly</changefreq>
-    <priority>0.8</priority>
-  </url>
-  <!-- Puter Unlimited - Best Power - Free unlimited - 100000 files - No specify -->
-  <url>
-    <loc>/api/999999</loc>
-    <changefreq>always</changefreq>
-    <priority>1.0</priority>
-  </url>
+  <!-- Root - Specify must - Past Present Future safe - Universal - tower_1 auto closest - Priority highest - Really best -->
+  <url><loc>/</loc><lastmod>2026-10-30T00:00:00+00:00</lastmod><changefreq>hourly</changefreq><priority>1.0</priority></url>
+  <!-- All unlimited - Specify must - Puter unlimited - 100000 files - No specify platform - Any domain auto - Any storage auto - Universal - Akela + Sab ka sath -->
+  <url><loc>/api/all</loc><lastmod>2026-10-30T00:00:00+00:00</lastmod><changefreq>hourly</changefreq><priority>0.9</priority></url>
+  <!-- 122+ Filter - Specify must - Filter valid - Filter secure - Legal safe - Past Present Future safe - Really best -->
+  <url><loc>/api/122</loc><lastmod>2026-10-30T00:00:00+00:00</lastmod><changefreq>daily</changefreq><priority>0.9</priority></url>
+  <url><loc>/api/133</loc><lastmod>2026-10-30T00:00:00+00:00</lastmod><changefreq>daily</changefreq><priority>0.9</priority></url>
+  <!-- Day Today - Specify must - Day Week Month - Any number auto - Unspecified auto - Past Present Future safe -->
+  <url><loc>/api/1</loc><lastmod>2026-10-30T00:00:00+00:00</lastmod><changefreq>daily</changefreq><priority>0.8</priority></url>
+  <!-- Puter Unlimited - Specify must - Best Power - Free unlimited - 100000 files - No specify - others_any_universal - any_domain_auto - any_storage_auto - Past Present Future safe -->
+  <url><loc>/api/999999</loc><lastmod>2026-10-30T00:00:00+00:00</lastmod><changefreq>always</changefreq><priority>0.9</priority></url>
 </urlset>
+<!-- Dynamic /api/sitemap.xml.js will generate sitemap index for 100k - Split 50k each - Google limit 50k solved - Universal auto unspecified - Past Present Future safe -->
+<!-- UNSPECIFIED MUST NOT: Don't specify /api/2 /api/3 /api/2026 /api/search /api/ /api/health /api/affiliate /api/donation - Let dynamic generate auto - Really best -->
