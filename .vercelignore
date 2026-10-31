@@ -1,3 +1,47 @@
+# FILE NAME: .vercelignore
+# PATH: /.vercelignore
+# TYPE: 150% - Maximum Best Advance Auto - Universal Specify Unspecified - Past Present Future Safe - Really Best
+
+# Specify MUST ignore - Security + Build - When need - Real - Legal safe - No PII secret leak - Must
 node_modules
 .git
+.gitignore
 .github
+.vscode
+.idea
+.vercel
+.env
+.env.local
+.env.development.local
+.env.production.local
+.env.*.local
+.next
+dist
+build
+out
+.turbo
+.cache
+coverage
+.nyc_output
+logs
+*.log
+npm-debug.log*
+yarn-debug.log*
+yarn-error.log*
+.DS_Store
+Thumbs.db
+*.tmp
+*.temp
+
+# Unspecified MUST NOT ignore - Universal auto - Any future file auto deploy - When not need specify - Really best
+# lib/* - Auto deploy - No ignore - Universal
+# api/* - Auto deploy - No ignore - Universal
+# *.html - Auto deploy - No ignore - Universal
+# *.xml - Auto deploy - No ignore - Universal
+# *.js - Auto deploy - No ignore - Universal
+# vercel.json - Auto deploy - No ignore - Universal
+# README.md - Auto deploy - No ignore - Universal
+# sitemap.xml - Auto deploy - No ignore - Universal
+# robots.txt - Auto deploy - No ignore - Universal
+
+# Past Present Future Safe - No secret leak - No build waste - Fast deploy - Really best - 150%
