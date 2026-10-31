@@ -1,1 +1,1 @@
-{"name":"auto-best","version":"1.0.0","type":"module","main":"api/[...all].js","scripts":{"dev":"vercel dev"},"private":true}
+{"name":"starhub","version":"2026.1.0","type":"module","main":"api/[...all].js","private":true,"scripts":{"dev":"vercel dev","build":"echo ok"},"dependencies":{}}
