@@ -1,0 +1,9 @@
+<!doctype html><html><head><meta charset="utf-8"/><meta name="viewport" content="width=device-width,initial-scale=1"/><title>StarHub Details - Play Store Details</title><link rel="icon" href="/favicon.ico"/><link rel="manifest" href="/manifest.json"/><style>body{margin:0;background:#000;color:#fff;font-family:system-ui}header{position:sticky;top:0;background:#111;padding:10px 12px;display:flex;gap:8px}.icon{width:72px;height:72px;border-radius:20px;background:#222;box-shadow:0 4px 20px #00ff8844}.info{padding:12px}button{background:#00ff88;color:#000;border:0;border-radius:999px;padding:10px 20px;font-weight:700}.card{padding:12px;border-bottom:1px solid #222}</style></head><body>
+<header><button onclick="history.back()">←</button><div>Details</div></header>
+<div style="display:flex;gap:12px;padding:12px"><img id="icon" class="icon" src="/icon.svg"><div><div id="name">App</div><small id="meta">Dev • 4.3★ • Downloads • 121MB • free safe legal</small><br><br><button>Install</button> <button style="background:#222;color:#fff">Share</button></div></div>
+<div class="info" id="info">Screenshots + Video + What's new + Permissions + Reviews + Similar + Dev contact + Privacy + Data safety + Managed publishing timed publish + Rollback + Staged 10% 50% 100% + Hash verify</div>
+<script type="module">
+const id=new URLSearchParams(location.search).get('id')||'auto';document.getElementById('name').innerText=id;
+document.getElementById('meta').innerText=`${id} • 4.3★ • 121MB • Icon 72px border-radius 20px box-shadow • free safe legal • valid specified unspec`;
+document.getElementById('info').innerHTML+=`<br><br>Valid Specified Unspecified Universal Filter • Global Law Auto • Feature Right • Whole Web • ${id} • akela sath`;
+</script></body></html>
