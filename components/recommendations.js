@@ -1,0 +1,3 @@
+// components/recommendations.js - Recommendations Component - For You Your Taste
+export function createRecommendations(items){return `<div style="padding:12px"><b>For you • Your Taste • Your Subscriptions • Most relevant • ${items.length} items</b><div style="display:flex;gap:10px;overflow:auto;padding:10px 0">${items.map(x=>`<div onclick="location.href='/watch/?v=${x.id}'" style="min-width:140px;background:#111;border:1px solid #222;border-radius:12px;overflow:hidden"><img src="/api/thumbnail?id=${x.id}&w=200" style="width:100%;aspect-ratio:16/9"><div style="padding:6px;font-size:12px">${x.id}</div></div>`).join('')}</div></div>`;}
+export default {createRecommendations};
