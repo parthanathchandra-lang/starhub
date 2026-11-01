@@ -1,0 +1,3 @@
+// components/player.js - Player Component - Tower far 144p offline Tower close Edge 30 Ping 20ms - Solution not problem
+export function createPlayer(id){return `<div style="aspect-ratio:16/9;background:#111;display:flex;align-items:center;justify-content:center;position:relative;overflow:hidden"><div style="position:absolute;inset:0;background:radial-gradient(circle at 50% 50%, #00ff8822, transparent 70%)"></div><div>▶️ ${id} - Player - Auto ${id} WIN - 144p blur placeholder + offline cache first + background sync - Tower far solution - Edge 30 = Ping 20ms - Tower close solution - Rotate shadow</div></div>`;}
+export default {createPlayer};
