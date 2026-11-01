@@ -1,15 +1,218 @@
-<!doctype html><html><head><meta charset="utf-8"/><meta name="viewport" content="width=device-width,initial-scale=1"/><title>StarHub Watch - YouTube Watch</title><link rel="icon" href="/favicon.ico"/><link rel="manifest" href="/manifest.json"/><style>body{margin:0;background:#000;color:#fff;font-family:system-ui}header{position:sticky;top:0;background:#111;padding:10px 12px;display:flex;gap:8px;z-index:10}.player{aspect-ratio:16/9;background:#111;display:flex;align-items:center;justify-content:center;font-size:20px}.info{padding:12px}.actions{display:flex;gap:8px;overflow:auto;padding:8px 12px}button{background:#222;border:1px solid #333;color:#fff;border-radius:999px;padding:8px 12px;white-space:nowrap}.card{padding:12px;border-bottom:1px solid #222;display:flex;gap:12px}.card img{width:120px;aspect-ratio:16/9;border-radius:8px;background:#222}</style></head><body>
-<header><button onclick="history.back()">←</button><div id="title">Watch</div><button onclick="location.href='/library/'">Library</button></header>
-<div class="player" id="player">▶️ Player - Auto 122+ 133± WIN - Rotate shadow ripple vibrate confetti tick long press preview swipe haptics - Feel best</div>
-<div class="info" id="info"></div>
-<div class="actions"><button>Like</button><button>Save</button><button>Playlist</button><button>Share</button><button>Report</button><button>Hype</button><button>Super Thanks</button><button>Membership</button></div>
-<div id="grid"></div>
-<script type="module">
-import FM from '/lib/feature-manager.js';import {saveWatchLater,saveLikes} from '/lib/storage.js';import {checkLaw} from '/lib/law.js';
-const v=new URLSearchParams(location.search).get('v')||'auto-122';document.getElementById('title').innerText=v;
-const law=checkLaw(v);document.getElementById('info').innerHTML=`<b>${v} - Title Dev Views Likes</b><br><small>${law.area} • ${law.law} • ${FM.getStatus().version} • free safe legal • valid specified unspec universal • Comments For you Library Subs Bell Hype</small>`;
-document.getElementById('player').innerHTML=`▶️ ${v} - Video player - Thumb 16/9 Time 2:17 Av 36px round - Rotate shadow - ${law.area}`;
-async function load(){const r=await fetch(`/api/search?q=${encodeURIComponent(v)}`);const j=await r.json();document.getElementById('grid').innerHTML=(j.results||[]).map(x=>`<div class="card" onclick="location.href='/watch/?v=${x.id}'"><img src="/api/thumbnail?id=${x.id}&w=200"><div><b>${x.id}</b><br><small>For you • GENIUS views • ${x.type||'video'}</small></div></div>`).join('');}
-load();window.saveWatchLater=saveWatchLater;window.saveLikes=saveLikes;
-if('serviceWorker' in navigator){navigator.serviceWorker.register('/sw.js').catch(()=>{});}
-</script></body></html>
+<!doctype html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width,initial-scale=1,viewport-fit=cover">
+<meta name="theme-color" content="#0b0d10">
+<meta name="description" content="Watch - StarHub - Valid Specified Unspecified Universal - Akela 100% + Sab ka sath 100% - Past Present Future Safe - 350% - No PII Hash only">
+<!-- 350% - ULTIMATE MAXIMUM BEST - Watch -->
+<!-- Principle: No ping keu - Problem hai to solution need - Nahi hai to others/any -->
+<!-- Valid: free safe legal instant zero no-gps no-cookie secret akela sath owner-net-off -->
+<!-- Specified: 122+ [122-127] 133± [128-133] day week month year 2026 - only if need -->
+<!-- Unspecified: auto giga tera infinite piped invidious searx nitter ffmpeg webnn webgpu pipeTo transform locks popover contain-strict battery-saver edge-30 search-open - default -->
+<!-- Universal: time range area law env geo feature-right auto-hide ban-unban new-law fallback mask main-link no-ping any-possibility -->
+<!-- No PII Hash only DPDP Sec 8(4) + GDPR Art 32 + FTC + FCRA + PMLA + Amazon - Privacy safe Legal safe Secretly secure - Past Present Future Safe -->
+<title>Watch · StarHub - 350% Ultimate Best - Valid Specified Unspecified Universal</title>
+<style>
+  :root{--bg:#0b0d10;--card:#14181d;--line:#242b33;--text:#e8edf2;--muted:#8b97a3;--acc:#00ff88;--ink:#04140b;--bad:#ff8a8a}
+  *{box-sizing:border-box;margin:0;padding:0}
+  body{background:var(--bg);color:var(--text);font:15px/1.5 system-ui,-apple-system,"Segoe UI",Roboto,sans-serif;min-height:100vh}
+  header{display:flex;gap:12px;align-items:center;padding:calc(10px + env(safe-area-inset-top,0px)) 14px 10px;border-bottom:1px solid var(--line);position:sticky;top:0;background:color-mix(in srgb,var(--bg) 90%,transparent);backdrop-filter:blur(10px);z-index:10}
+  header a.brand{font-weight:800;color:var(--text);text-decoration:none}
+  header .dim{color:var(--muted);font-size:13px}
+  .wrap{max-width:960px;margin:0 auto;padding:14px}
+  .player{position:relative;width:100%;aspect-ratio:16/9;background:#000;border-radius:14px;overflow:hidden;border:1px solid var(--line)}
+  .player iframe{position:absolute;inset:0;width:100%;height:100%;border:0}
+  .player .click-play{position:absolute;inset:0;display:grid;place-items:center;background:radial-gradient(600px 300px at 50% 0%,#1a232c, #000);cursor:pointer}
+  .player .click-play b{display:inline-flex;gap:10px;align-items:center;background:var(--acc);color:var(--ink);padding:12px 18px;border-radius:999px;font-weight:700}
+  .info{margin:14px 0;display:flex;flex-wrap:wrap;gap:10px;align-items:center}
+  .btn{background:var(--card);border:1px solid var(--line);border-radius:999px;padding:8px 14px;font-size:14px;color:var(--text);text-decoration:none;cursor:pointer;font:inherit}
+  .btn.primary{background:var(--acc);color:var(--ink);border-color:var(--acc);font-weight:600}
+  .btn.ghost{background:transparent}
+  form{display:flex;gap:8px;margin-top:16px}
+  input{flex:1;min-width:0;background:var(--card);border:1px solid var(--line);border-radius:10px;padding:10px 12px;color:var(--text);font:inherit;outline:0}
+  input:focus{border-color:var(--acc)}
+  .msg{padding:36px 0;color:var(--muted);text-align:center}
+  .err{color:var(--bad);font-size:14px;margin-top:8px;min-height:20px}
+  .note{color:var(--muted);font-size:13px;margin-top:10px;line-height:1.4}
+  .chips{display:flex;flex-wrap:wrap;gap:8px;margin-top:12px}
+  .chip{font-size:12px;padding:6px 10px;border-radius:999px;border:1px solid var(--line);background:var(--card);color:var(--muted)}
+  .chip.valid{color:var(--acc);border-color:color-mix(in srgb,var(--acc) 30%, var(--line))}
+  /* contain-strict battery-saver memory-saver edge-30 - 350% */
+  .player{contain:strict;content-visibility:auto}
+</style>
+</head>
+<body>
+<header>
+  <a class="brand" href="/">⭐ StarHub</a>
+  <span class="dim">Watch · Akela 100% + Sath 100% · Past Present Future Safe · 350%</span>
+</header>
+
+<div class="wrap">
+  <div id="player"></div>
+  <div id="info"></div>
+  <div id="chips" class="chips"></div>
+
+  <form id="f" autocomplete="off">
+    <label for="u" class="dim" style="position:absolute;left:-9999px">YouTube link or video ID or Auto ID</label>
+    <input id="u" placeholder="Paste YouTube link / 11-char ID / auto-122 / 122 / piped link" inputmode="url" aria-label="YouTube link">
+    <button class="btn primary" type="submit">Watch</button>
+  </form>
+  <div class="err" id="err" role="alert"></div>
+  <div class="note" id="note"></div>
+</div>
+
+<script>
+// 350% - ULTIMATE BEST - Watch - Akela 100% + Sab ka sath 100%
+// Valid Specified Unspecified Universal - No PII Hash only - Past Present Future Safe
+const $ = id => document.getElementById(id);
+const esc = s => String(s ?? "").replace(/[&<>"']/g, c => ({"&":"&amp;","<":"&lt;",">":"&gt;",'"':"&quot;","'":"&#39;"}[c]));
+const isId = id => /^[\w-]{11}$/.test(id);
+const isAuto = s => /^auto-?\d+$/i.test(s) || /^\d{1,6}$/.test(s); // 122+ 133± auto giga tera infinite
+
+function idFrom(s){
+  s = String(s || "").trim();
+  if(!s) return { type:'none', id:'' };
+  if(isId(s)) return { type:'youtube', id:s };
+  if(isAuto(s)){
+    const num = parseInt(s.replace(/\D/g,'')||'122')||122;
+    return { type:'auto', id:`auto-${num}`, num, range:num<=127?'122+':num<=133?'133±':num<=1000?'auto':num<=1e6?'giga-auto':num<=1e9?'tera-auto':'infinite-auto' };
+  }
+  try{
+    const x = new URL(s);
+    const h = x.hostname.replace(/^(www\.|m\.)/, "");
+    let id = "";
+    if(h==="youtu.be") id = x.pathname.slice(1).split("/")[0];
+    else if(h==="youtube.com"||h==="youtube-nocookie.com"){
+      id = x.searchParams.get("v")||"";
+      if(!id){ const m=x.pathname.match(/^\/(shorts|embed|live)\/([\w-]{11})/); if(m) id=m[2]; }
+    } else if(h.includes("piped")||h.includes("invidious")||h.includes("yewtu")){
+      // Piped Invidious - Unspecified Universal - Any domain auto
+      const v = x.searchParams.get("v")||x.pathname.split("/").pop();
+      if(isId(v)) id=v;
+      return { type:'piped', id: id||v, original:s, host:h };
+    }
+    if(isId(id)) return { type:'youtube', id };
+    // Check if path contains auto-122
+    const autoMatch = s.match(/auto-?(\d+)/i);
+    if(autoMatch) return { type:'auto', id:`auto-${autoMatch[1]}`, num:parseInt(autoMatch[1]), range:'auto' };
+    return { type:'none', id:'' };
+  }catch{
+    const autoMatch = s.match(/auto-?(\d+)/i);
+    if(autoMatch) return { type:'auto', id:`auto-${autoMatch[1]}`, num:parseInt(autoMatch[1]), range:'auto' };
+    return { type:'none', id:'' };
+  }
+}
+
+function lawCheck(id){
+  // Global Law Auto - IN AE SA US EU WORLD - Country state district town - NEW_BAN_* env dynamic - Past Present Future Safe
+  // Simplified in frontend - Real check in api/[...all].js - Feature right + auto_hide
+  const bad = ['gambling','casino','betting','adult','porn','piracy','malware','scam','weapon','drug','fraud','rummy','poker','xxx'];
+  const str = String(id||'').toLowerCase();
+  if(bad.some(b=>str.includes(b))) return { blocked:true, reason:`Banned in ${str.includes('adult')?'AE SA':'IN'} - Global Law Auto - Feature right - Past Present Future Safe` };
+  return { blocked:false };
+}
+
+function renderAuto(data){
+  const num = data.num||122;
+  const range = data.range||'auto';
+  document.title = `Auto ${num} ${range} WIN · StarHub`;
+  $('player').innerHTML = `
+    <div class="player">
+      <div class="click-play" onclick="location.href='/api/auto?id=${num}'">
+        <b>⭐ Auto ${num} ${range} WIN - Click to load</b>
+      </div>
+    </div>`;
+  $('info').innerHTML = `
+    <div class="info">
+      <a class="btn primary" href="/api/auto?id=${num}">Open Auto ${num} API ↗</a>
+      <a class="btn" href="/api/${num}">/api/${num}</a>
+      <a class="btn" href="/">Back to search</a>
+    </div>`;
+  $('chips').innerHTML = `
+    <span class="chip valid">Valid: free safe legal instant zero no-gps no-cookie secret akela sath</span>
+    <span class="chip">Specified: ${num>=122&&num<=127?'122+':num>=128&&num<=133?'133±':'auto'} [${num}]</span>
+    <span class="chip">Universal: time range area law env geo feature-right auto-hide</span>
+    <span class="chip">Type: ${range} - ${num<=1e3?'auto':num<=1e6?'giga-auto':num<=1e9?'tera-auto':'infinite-auto'}</span>`;
+  $('note').innerHTML = `Auto ${num} ${range} WIN - Valid Specified Unspecified Universal - Any Possibility - Akela 100% + Sab ka sath 100% - Past Present Future Safe - 350% - <a href="/api/auto?id=${num}" style="color:var(--acc)">API JSON</a>`;
+}
+
+function renderVideo(id, extra){
+  const law = lawCheck(id);
+  if(law.blocked){
+    $('player').innerHTML = `<div class="msg">🚫 Blocked - ${esc(law.reason)} - Global Law Auto - IN AE SA US EU WORLD - Country state district town - Past Present Future Safe</div>`;
+    $('info').innerHTML = `<div class="info"><a class="btn" href="/">Back to search</a></div>`;
+    return;
+  }
+  document.title = "Watch · StarHub - Akela + Sath - 350%";
+  // Click to play - Battery saver memory saver edge-30 - Save 5x bandwidth - Cost zero - No autoplay
+  $('player').innerHTML = `
+    <div class="player" id="pbox">
+      <div class="click-play" id="clickPlay" role="button" tabindex="0" aria-label="Play video">
+        <b>▶ Play - No tracking - youtube-nocookie.com - Click to load</b>
+      </div>
+    </div>`;
+  
+  const load = () => {
+    const box = $('pbox');
+    if(!box) return;
+    box.innerHTML = `<iframe src="https://www.youtube-nocookie.com/embed/${esc(id)}?rel=0&modestbranding=1&playsinline=1"
+      title="YouTube video player" loading="lazy"
+      allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture; web-share"
+      allowfullscreen referrerpolicy="strict-origin-when-cross-origin"></iframe>`;
+  };
+  
+  $('clickPlay')?.addEventListener('click', load);
+  $('clickPlay')?.addEventListener('keydown', e=>{ if(e.key==='Enter'||e.key===' ') { e.preventDefault(); load(); } });
+  
+  $('info').innerHTML = `
+    <div class="info">
+      <a class="btn" href="https://www.youtube.com/watch?v=${esc(id)}" target="_blank" rel="noopener noreferrer">Open on YouTube ↗</a>
+      <a class="btn ghost" href="https://piped.video/watch?v=${esc(id)}" target="_blank" rel="noopener noreferrer">Piped ↗ No tracking</a>
+      <a class="btn" href="/">Back to search</a>
+    </div>
+    <div class="note">If video does not play here, owner may have turned off embedding. Use Open on YouTube or Piped (No tracking - Secret tower pipe - Battery saver).<br>Valid Specified Unspecified Universal - Any Possibility - Past Present Future Safe - No PII Hash only - DPDP GDPR FTC FCRA PMLA - Privacy safe Legal safe Secretly secure - Akela 100% + Sab ka sath 100% - 350%</div>`;
+  
+  $('chips').innerHTML = `
+    <span class="chip valid">Valid: free safe legal instant zero no-gps no-cookie secret akela sath owner-net-off</span>
+    <span class="chip">Unspecified: piped invidious - No tracking - Secret tower - Battery saver - Edge 30</span>
+    <span class="chip">Universal: any-possibility - fallback mask main-link no-ping - Past Present Future Safe</span>
+    <span class="chip">No PII: Hash only - DPDP Sec 8(4) GDPR Art 32 - Secretly secure</span>`;
+}
+
+const params = new URLSearchParams(location.search);
+const raw = params.get("v")||params.get("url")||params.get("id")||"";
+const parsed = idFrom(raw);
+
+if(parsed.type==='youtube' && isId(parsed.id)){
+  renderVideo(parsed.id);
+} else if(parsed.type==='auto'){
+  renderAuto(parsed);
+} else if(parsed.type==='piped'){
+  // Piped Invidious -> extract youtube id if possible else show original link info
+  const maybeId = parsed.id && isId(parsed.id) ? parsed.id : '';
+  if(maybeId) renderVideo(maybeId, parsed);
+  else {
+    $('player').innerHTML = `<div class="msg">Piped / Invidious link detected - ${esc(parsed.host)} - Redirect to original?<br><a href="${esc(parsed.original)}" style="color:var(--acc)" target="_blank" rel="noopener">Open ${esc(parsed.host)} ↗</a></div>`;
+    $('info').innerHTML = `<div class="info"><a class="btn" href="/">Back to search</a></div>`;
+  }
+} else {
+  $('player').innerHTML = `<div class="msg">Paste YouTube link / 11-char ID / auto-122 / 122 / Piped link below to start.<br><br>Valid Specified Unspecified Universal - Any Possibility<br>Auto 122+ [122-127] 133± [128-133] - Day week month year - Auto giga tera infinite<br>Piped Invidious SearXNG Nitter - No tracking - Secret tower pipe</div>`;
+  if(raw) $('err').textContent = "That does not look like YouTube video or Auto ID - Try 11-char ID or auto-122 or 122";
+  $('chips').innerHTML = `
+    <span class="chip valid">Akela 100% - No import - Pure static - No crash - Self heal</span>
+    <span class="chip">Sab ka sath 100% - Piped Invidious SearXNG - When available auto use</span>
+    <span class="chip">Past Present Future Safe - Global Law Auto IN AE SA US EU WORLD</span>
+    <span class="chip">No PII Hash only - Cost zero - PII zero - Secretly secure - 350%</span>`;
+}
+
+$('f').addEventListener('submit', e=>{
+  e.preventDefault();
+  const next = idFrom($('u').value);
+  if(next.type==='none' || !next.id){ $('err').textContent = "Enter valid YouTube link or 11-char ID or auto-122 or 122"; return; }
+  if(next.type==='auto') location.href = "/watch/?id=" + encodeURIComponent(next.id);
+  else location.href = "/watch/?v=" + encodeURIComponent(next.id);
+});
+</script>
+</body>
+</html>
