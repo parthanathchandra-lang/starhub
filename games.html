@@ -1,0 +1,131 @@
+<!doctype html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width,initial-scale=1">
+<title>Game</title>
+<script src="https://cdn.jsdelivr.net/npm/@supabase/supabase-js@2"></script>
+<style>
+:root{--bg:#0b0d10;--card:#15191f;--line:#242b33;--text:#e8edf2;--muted:#8b97a3;--acc:#00ff88;--ink:#04140b}
+body{margin:0;padding:12px;background:var(--bg);color:var(--text);font:15px/1.45 system-ui,sans-serif}
+a{color:var(--acc);text-decoration:none}
+h1{font-size:20px;margin:10px 0 4px}
+.msg{color:var(--muted);font-size:13px;min-height:1.2em;margin:4px 0}
+iframe{width:100%;height:70vh;border:1px solid var(--line);border-radius:12px;background:#000;display:block}
+.row{display:flex;gap:8px;flex-wrap:wrap;margin:12px 0}
+.btn{background:var(--card);border:1px solid var(--line);color:var(--text);padding:8px 14px;border-radius:999px;font:inherit;cursor:pointer}
+.btn.primary{background:var(--acc);color:var(--ink);border-color:var(--acc);font-weight:600}
+.btn:disabled{opacity:.45;cursor:default}
+:focus-visible{outline:2px solid var(--acc);outline-offset:2px}
+</style>
+</head>
+<body>
+
+<a href="index.html">← Game Hub</a>
+<h1 id="title">Loading…</h1>
+<p class="msg" id="status" role="status" aria-live="polite"></p>
+
+<iframe id="frame" title="Game" allow="fullscreen; gamepad"
+  sandbox="allow-scripts allow-pointer-lock allow-fullscreen allow-forms"></iframe>
+
+<div class="row">
+  <button class="btn primary" id="fs" type="button">Fullscreen</button>
+  <button class="btn" id="reload" type="button">Reload</button>
+  <button class="btn" id="share" type="button">Share</button>
+  <button class="btn" id="save" type="button" disabled>Save score</button>
+</div>
+<p class="msg" id="desc"></p>
+
+<script>
+/* ===== CONFIG ===== */
+const CONFIG = {
+  url: "https://tsomtfhynwhjsypojlbn.supabase.co",
+  key: "PASTE-YOUR-ANON-KEY-HERE"   // anon/public key only, never service_role
+};
+
+/* ===== State and helpers ===== */
+const $ = id => document.getElementById(id);
+const frame = $("frame");
+const SLUG_RE = /^[a-z0-9][a-z0-9-]*$/i;
+let game = null, client = null, pendingScore = null, lastSave = 0;
+
+const setStatus = m => { $("status").textContent = m; };
+const isHttps = u => { try { return new URL(u).protocol === "https:"; } catch { return false; } };
+
+/* ===== Load game ===== */
+async function load() {
+  const slug = new URLSearchParams(location.search).get("slug") || "";
+  if (!SLUG_RE.test(slug)) return setStatus("Game not found.");
+  if (!CONFIG.key || CONFIG.key.startsWith("PASTE-")) return setStatus("Setup needed: add your anon key in CONFIG.");
+
+  client = supabase.createClient(CONFIG.url, CONFIG.key);
+  const { data, error } = await client
+    .from("games")
+    .select("id,title,description,game_url,slug")
+    .eq("slug", slug)
+    .eq("is_active", true)
+    .maybeSingle();
+
+  if (error) { console.error(error); return setStatus("Couldn't load this game. Please refresh."); }
+  if (!data) return setStatus("Game not found.");
+
+  game = data;
+  document.title = `${data.title} - Game Hub`;
+  $("title").textContent = data.title;
+  $("desc").textContent = data.description || "";
+  frame.src = (data.game_url && isHttps(data.game_url))
+    ? data.game_url
+    : `games/${encodeURIComponent(slug)}/index.html`;
+  setStatus("");
+}
+
+/* ===== Scores: accepted only from this game's iframe ===== */
+window.addEventListener("message", e => {
+  if (e.source !== frame.contentWindow) return;
+  const d = e.data;
+  if (d && d.type === "score" && Number.isInteger(d.score) && d.score >= 0 && d.score <= 1e9) {
+    pendingScore = d.score;
+    $("save").disabled = false;
+    setStatus(`Score ${pendingScore} ready to save.`);
+  }
+});
+
+$("save").onclick = async () => {
+  if (pendingScore == null || !game || !client) return;
+  if (Date.now() - lastSave < 3000) return setStatus("Wait a moment before saving again.");
+  lastSave = Date.now();
+  $("save").disabled = true;
+
+  const { error } = await client.from("scores").insert({ game_id: game.id, score: pendingScore });
+  if (error) {
+    console.error(error);
+    setStatus("Couldn't save score. Try again.");
+    $("save").disabled = false;
+  } else {
+    setStatus(`Score ${pendingScore} saved.`);
+    pendingScore = null;
+  }
+};
+
+/* ===== Buttons ===== */
+$("fs").onclick = () => frame.requestFullscreen?.();
+
+$("reload").onclick = () => {
+  pendingScore = null;
+  $("save").disabled = true;
+  frame.src = frame.src;
+  setStatus("Reloaded.");
+};
+
+$("share").onclick = async () => {
+  const url = location.href;
+  try {
+    if (navigator.share) await navigator.share({ title: game?.title || "Game", url });
+    else { await navigator.clipboard.writeText(url); setStatus("Link copied."); }
+  } catch { /* cancelled or clipboard blocked */ }
+};
+
+load();
+</script>
+</body>
+</html>
