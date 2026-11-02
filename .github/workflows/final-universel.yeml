@@ -1,0 +1,20 @@
+name: Final - All Domains Live
+
+on:
+  push:
+    branches: [main]
+
+jobs:
+  deploy:
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v4
+      - uses: actions/setup-node@v4
+        with:
+          node-version: 20
+      - run: npm ci || npm install
+      - run: npm run build
+        env:
+          NEXT_PUBLIC_SUPABASE_URL: https://tsomtfhynwhjsypojlbn.supabase.co
+          NEXT_PUBLIC_SUPABASE_ANON_KEY: sb_publishable_UcqvtkXKRKgIf6p9Tb10pw_AKh2LdAU
+          NEXT_PUBLIC_SITE_URL: https://starhubigdp.vercel.app
