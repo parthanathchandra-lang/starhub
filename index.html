@@ -2,861 +2,120 @@
 <html lang="en">
 <head>
 <meta charset="utf-8">
-<meta name="viewport" content="width=device-width,initial-scale=1,viewport-fit=cover">
-<meta name="theme-color" content="#0b0d10">
-<meta name="description" content="StarHub - search the web, images, videos, news, apps and games - Valid Specified Unspecified Universal Filter - Any Possibility - Akela 100% + Sab ka sath 100% - Past Present Future Safe - 350%">
-<meta name="robots" content="index, follow, max-image-preview:large">
-<!-- 350% - ULTIMATE MAXIMUM BEST - Every possible problem possibility + All solutions -->
-<!-- Principle: No ping keu - Problem hai to solution need - Nahi hai to others/any -->
-<!-- Akela 100% + Sab ka sath 100% - Past Present Future Safe - Universal Specify Unspecified -->
-<!-- Valid: free safe legal instant zero no-gps no-cookie secret akela sath owner-net-off -->
-<!-- Specified: 122+ [122-127] 133± [128-133] day week month year 2026 - only if need -->
-<!-- Unspecified: auto giga tera infinite piped invidious searx nitter ffmpeg webnn webgpu pipeTo transform locks popover contain-strict battery-saver edge-30 search-open autocomplete - default -->
-<!-- Universal: time range area law env geo feature-right auto-hide ban-unban new-law fallback mask main-link no-ping any-possibility procedures-guided constitution-auto -->
-<!-- No PII Hash only DPDP Sec 5,6,7,8,8(4),12,13 + GDPR Art 5,6,17,25,32 + FTC 16 CFR 255 + ASCI 2024 + FCRA 2010 + PMLA Sec12 + Amazon 2024 - Privacy safe Legal safe Secretly secure -->
-<title>StarHub Search - 350% Ultimate Best - Valid Specified Unspecified Universal - Akela + Sath</title>
-<link rel="icon" href="data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 32 32'%3E%3Crect width='32' height='32' rx='8' fill='%2300ff88'/%3E%3Ctext x='16' y='22' font-size='18' text-anchor='middle' font-family='Arial' font-weight='700' fill='%2304140b'%3ES%3C/text%3E%3C/svg%3E">
-<link rel="manifest" href="/manifest.json">
+<meta name="viewport" content="width=device-width,initial-scale=1">
+<title>Game Hub</title>
+<script src="https://cdn.jsdelivr.net/npm/@supabase/supabase-js@2"></script>
 <style>
-  :root{--bg:#0b0d10;--card:#14181d;--line:#242b33;--text:#e8edf2;--muted:#8b97a3;--acc:#00ff88;--ink:#04140b;--link:#8ab4ff}
-  *{box-sizing:border-box;margin:0;padding:0}
-  html{contain:paint}
-  body{background:var(--bg);color:var(--text);font:15px/1.45 system-ui,-apple-system,"Segoe UI",Roboto,sans-serif;min-height:100vh;padding-bottom:calc(66px + env(safe-area-inset-bottom,0px));contain:style}
-  button,input,select{font:inherit;color:inherit}
-  .hidden{display:none!important}
-  .dim{color:var(--muted);font-size:12px}
-  /* Battery saver Memory saver Conn saver Edge 30 - contain-strict - No heat */
-  header.top{position:sticky;top:0;z-index:20;display:flex;gap:10px;align-items:center;padding:calc(10px + env(safe-area-inset-top,0px)) 12px 10px;background:rgba(11,13,16,.94);backdrop-filter:blur(10px);-webkit-backdrop-filter:blur(10px);border-bottom:1px solid var(--line);contain:layout}
-  .brand{font-weight:800;text-decoration:none;color:var(--text);white-space:nowrap;font-size:16px}
-  #sform{flex:1;display:flex;min-width:0;background:var(--card);border:1px solid var(--line);border-radius:999px;overflow:hidden}
-  #sform:focus-within{border-color:var(--acc)}
-  #q{flex:1;min-width:0;background:none;border:0;outline:0;padding:10px 14px;font-size:16px}
-  #sform button{background:none;border:0;padding:0 14px;cursor:pointer;font-size:16px}
-  #profBtn{width:36px;height:36px;border-radius:50%;border:0;cursor:pointer;font-weight:700;color:#000;flex:none}
-  .tabs{display:flex;gap:2px;overflow-x:auto;padding:6px 12px 0;border-bottom:1px solid var(--line);scrollbar-width:none}
-  .tabs::-webkit-scrollbar,.chips::-webkit-scrollbar{display:none}
-  .tab{background:none;border:0;padding:10px 12px;color:var(--muted);cursor:pointer;white-space:nowrap;border-bottom:2px solid transparent}
-  .tab.on{color:var(--acc);border-bottom-color:var(--acc)}
-  .filters{display:flex;gap:8px;flex-wrap:wrap;padding:10px 12px}
-  .filters select{background:var(--card);border:1px solid var(--line);border-radius:10px;padding:6px 8px;font-size:13px}
-  .chips{display:flex;gap:6px;overflow-x:auto;padding:10px 12px;scrollbar-width:none}
-  .chip{white-space:nowrap;border:1px solid var(--line);background:var(--card);border-radius:999px;padding:6px 12px;font-size:13px;cursor:pointer}
-  .chip[aria-pressed="true"]{background:var(--acc);color:var(--ink);border-color:var(--acc)}
-  .sec{padding:12px 12px 6px;font-weight:700;font-size:14px}
-  .svcs,.launch{display:grid;grid-template-columns:repeat(auto-fill,minmax(140px,1fr));gap:8px;padding:0 12px 12px;contain:layout}
-  .svc{display:flex;align-items:center;gap:10px;background:var(--card);border:1px solid var(--line);border-radius:12px;padding:10px;text-decoration:none;color:var(--text);font-size:14px;min-width:0;contain:content}
-  .svc span{overflow:hidden;text-overflow:ellipsis;white-space:nowrap}
-  .svc img{width:20px;height:20px;border-radius:4px;flex:none}
-  .list-item{display:flex;justify-content:space-between;gap:8px;align-items:center;padding:10px 0;border-bottom:1px solid var(--line)}
-  .list-item button{background:none;border:0;cursor:pointer;text-align:left;overflow-wrap:anywhere}
-  main#results{padding:4px 12px 12px;max-width:860px;margin:0 auto}
-  .res{padding:12px 0;border-bottom:1px solid var(--line);overflow:hidden;contain:content}
-  .src{display:flex;gap:6px;align-items:center;font-size:13px;color:var(--muted);flex-wrap:wrap}
-  .src img{width:16px;height:16px;border-radius:3px}
-  .title{display:block;color:var(--link);font-size:18px;text-decoration:none;margin:4px 0;overflow-wrap:anywhere}
-  .title:visited{color:#c58aff}
-  .title:hover{text-decoration:underline}
-  .desc{color:#b7c0c9;font-size:14px;overflow-wrap:anywhere}
-  .thumb{float:right;width:120px;height:72px;object-fit:cover;border-radius:10px;margin:2px 0 6px 12px;background:#1d232b}
-  .acts{display:flex;gap:8px;margin-top:8px;flex-wrap:wrap}
-  .btn,.acts button{background:var(--card);border:1px solid var(--line);border-radius:999px;padding:6px 12px;font-size:13px;cursor:pointer;text-decoration:none;display:inline-flex;align-items:center;gap:4px;color:var(--text)}
-  .btn.primary{background:var(--acc);color:var(--ink);border-color:var(--acc);font-weight:600}
-  .igrid{display:grid;grid-template-columns:repeat(auto-fill,minmax(150px,1fr));gap:8px;padding-top:10px}
-  .tile{background:var(--card);border:1px solid var(--line);border-radius:12px;overflow:hidden;cursor:pointer;padding:0;text-align:left;contain:content}
-  .tile img{width:100%;aspect-ratio:4/3;object-fit:cover;display:block;background:#1d232b}
-  .tile span{display:block;padding:6px 8px;font-size:12px;color:var(--muted);white-space:nowrap;overflow:hidden;text-overflow:ellipsis}
-  .vgrid{display:grid;grid-template-columns:repeat(auto-fill,minmax(240px,1fr));gap:16px;padding-top:10px}
-  .vthumb{position:relative;width:100%;border:0;padding:0;background:none;cursor:pointer;display:block;border-radius:12px;overflow:hidden}
-  .vthumb img{width:100%;aspect-ratio:16/9;object-fit:cover;display:block;background:#1d232b}
-  .dur{position:absolute;right:6px;bottom:6px;background:rgba(0,0,0,.8);color:#fff;font-size:12px;padding:1px 6px;border-radius:4px}
-  .vt{font-size:15px;margin-top:6px;overflow-wrap:anywhere}
-  .more{text-align:center;padding:18px}
-  .more button,.empty button,.primary-btn{background:var(--acc);color:var(--ink);border:0;border-radius:999px;padding:10px 20px;font-weight:600;cursor:pointer}
-  .loading,.empty{padding:28px 12px;color:var(--muted);text-align:center}
-  .notice{background:var(--card);border:1px dashed #2f8f5f;border-radius:12px;margin:12px;padding:14px;font-size:13px;line-height:1.6}
-  .notice code{background:#1d232b;padding:1px 5px;border-radius:5px}
-  .sheet-wrap{position:fixed;inset:0;background:rgba(0,0,0,.55);z-index:40;display:flex;align-items:flex-end;justify-content:center}
-  .sheet{background:var(--card);width:min(560px,100%);border-radius:18px 18px 0 0;padding:16px;padding-bottom:calc(18px + env(safe-area-inset-bottom,0px));border-top:1px solid var(--line);max-height:85vh;overflow:auto}
-  .sheet .head{display:flex;gap:10px;align-items:center;margin-bottom:8px}
-  .sheet .head b{font-size:17px;overflow-wrap:anywhere}
-  .sheet .stack{display:flex;flex-direction:column;gap:8px;margin-top:12px}
-  .sheet .stack > *{justify-content:center;text-align:center}
-  .x{float:right;background:none;border:0;font-size:20px;cursor:pointer;color:var(--muted)}
-  .menu{position:fixed;top:60px;right:10px;width:min(300px,calc(100% - 20px));background:var(--card);border:1px solid var(--line);border-radius:14px;padding:8px;z-index:30;box-shadow:0 10px 30px rgba(0,0,0,.5)}
-  .menu button{display:flex;align-items:center;gap:10px;width:100%;background:none;border:0;padding:10px;border-radius:10px;cursor:pointer;text-align:left;color:var(--text)}
-  .menu button:hover{background:#1d232b}
-  .dot{width:26px;height:26px;border-radius:50%;display:grid;place-items:center;color:#000;font-weight:700;font-size:12px;flex:none}
-  .bottom{position:fixed;bottom:0;left:0;right:0;display:flex;background:rgba(11,13,16,.97);border-top:1px solid var(--line);padding:6px 0 calc(8px + env(safe-area-inset-bottom,0px));z-index:15}
-  .bottom button{flex:1;background:none;border:0;color:var(--muted);font-size:11px;cursor:pointer;display:flex;flex-direction:column;align-items:center;gap:2px}
-  .bottom button.on{color:var(--acc)}
-  .bottom .i{font-size:18px;line-height:1}
-  .toast{position:fixed;left:50%;bottom:84px;transform:translateX(-50%);background:#eef3f7;color:#0b0d10;padding:9px 16px;border-radius:999px;font-size:13px;opacity:0;transition:opacity .2s;pointer-events:none;z-index:50;max-width:90vw;text-align:center}
-  .toast.show{opacity:1}
-  mark{background:none;color:var(--acc)}
-  @media (prefers-reduced-motion:reduce){*{transition:none!important}}
-  @media (min-width:900px){.svcs,.launch{padding:0 20px 14px}main#results{padding:6px 20px}}
-  /* No-JS Compatible - Pure HTML works - Akela 100% */
-  noscript .nojs{display:block!important;padding:20px;text-align:center;color:var(--muted)}
-  .nojs{display:none}
+body{margin:0;padding:12px;background:#0b0d10;color:#e8edf2;font:15px system-ui,sans-serif}
+input{width:100%;max-width:320px;padding:9px 14px;border-radius:999px;border:1px solid #242b33;background:#15191f;color:#e8edf2;font:inherit;margin-bottom:10px}
+.chips{display:flex;gap:6px;overflow-x:auto;margin-bottom:10px}
+.chip{flex:none;border:1px solid #242b33;background:#15191f;color:#e8edf2;border-radius:999px;padding:6px 12px;cursor:pointer}
+.chip[aria-pressed=true]{background:#00ff88;color:#04140b;border-color:#00ff88}
+.grid{display:grid;grid-template-columns:repeat(auto-fill,minmax(150px,1fr));gap:10px}
+.card{background:#15191f;border:1px solid #242b33;border-radius:12px;overflow:hidden;color:#e8edf2;text-decoration:none}
+.card img{width:100%;aspect-ratio:16/10;object-fit:cover;display:block;background:#1d232b}
+.card div{padding:8px 10px;white-space:nowrap;overflow:hidden;text-overflow:ellipsis}
+.msg{color:#8b97a3;padding:20px 0;grid-column:1/-1}
+h2{font-size:15px;margin:22px 0 8px}
+.svcs{display:grid;grid-template-columns:repeat(auto-fill,minmax(140px,1fr));gap:8px}
+.svc{background:#15191f;border:1px solid #242b33;border-radius:10px;padding:10px;color:#e8edf2;text-decoration:none}
 </style>
 </head>
 <body>
-<!-- Akela 100% - No JS Compatible - Pure HTML works - Search without JS -->
-<noscript>
-  <div class="nojs" style="display:block;padding:20px;background:var(--card);border-bottom:1px solid var(--line)">
-    <b>⭐ StarHub - Akela 100% - No JS Compatible - Pure HTML works</b><br>
-    <span class="dim">JavaScript off - Use search engines below - No tracking - Free only - Past Present Future safe</span>
-    <div style="display:grid;grid-template-columns:repeat(auto-fill,minmax(140px,1fr));gap:8px;padding:12px 0">
-      <a class="svc" href="https://www.google.com/search?q=StarHub" target="_blank" rel="noopener"><span>Google</span></a>
-      <a class="svc" href="https://www.bing.com/search?q=StarHub" target="_blank" rel="noopener"><span>Bing</span></a>
-      <a class="svc" href="https://duckduckgo.com/?q=StarHub" target="_blank" rel="noopener"><span>DuckDuckGo</span></a>
-      <a class="svc" href="https://search.brave.com/search?q=StarHub" target="_blank" rel="noopener"><span>Brave Search</span></a>
-      <a class="svc" href="https://www.youtube.com/results?search_query=StarHub" target="_blank" rel="noopener"><span>YouTube</span></a>
-      <a class="svc" href="https://play.google.com/store/search?c=apps&q=StarHub" target="_blank" rel="noopener"><span>Play Store</span></a>
-    </div>
-  </div>
-</noscript>
 
-<header class="top">
-  <a class="brand" href="/">⭐ Star<span style="color:var(--acc)">Hub</span></a>
-  <form id="sform" role="search" autocomplete="off">
-    <label for="q" class="hidden">Search - Valid Specified Unspecified Universal - Akela + Sath</label>
-    <input id="q" type="search" placeholder="Search web, videos, apps, games… 122+ 133± auto giga tera infinite" enterkeyhint="search" spellcheck="false" autocapitalize="off" autocomplete="off">
-    <button type="submit" aria-label="Search">🔍</button>
-  </form>
-  <button id="profBtn" aria-label="Switch account" title="Accounts - Akela 100% + Sab ka sath 100%"></button>
-</header>
+<h1>★ Game Hub</h1>
+<input id="search" type="search" placeholder="Search games" aria-label="Search games">
+<nav class="chips" id="chips"></nav>
+<main class="grid" id="grid"><div class="msg">Loading…</div></main>
 
-<nav class="tabs hidden" id="tabs" aria-label="Search types - Valid Specified Unspecified Universal"></nav>
-<div class="filters hidden" id="filters"></div>
-
-<main id="home"></main>
-<main id="results" class="hidden" aria-live="polite"></main>
-
-<div id="sheet" class="sheet-wrap hidden" role="dialog" aria-modal="true" aria-label="Result details">
-  <div class="sheet">
-    <button class="x" id="shClose" aria-label="Close">✕</button>
-    <div id="sheetBody"></div>
-  </div>
-</div>
-
-<div id="menu" class="menu hidden" role="menu"></div>
-
-<nav class="bottom" aria-label="Main - Akela 100% + Sab ka sath 100%">
-  <button data-view="home" class="on"><span class="i" aria-hidden="true">🏠</span>Home</button>
-  <button data-view="saved"><span class="i" aria-hidden="true">★</span>Saved</button>
-  <button data-view="history"><span class="i" aria-hidden="true">🕘</span>History</button>
-  <button data-view="profile"><span class="i" aria-hidden="true">👤</span>Account</button>
-</nav>
-
-<div id="toast" class="toast" role="status" aria-live="polite"></div>
+<h2>Services</h2>
+<div class="svcs" id="svcs"></div>
 
 <script>
-// FILE: index.html - 350% ULTIMATE MAXIMUM BEST - Think Solution - Akela 100% + Sab ka sath 100%
-// No PII Hash only - DPDP GDPR FTC FCRA PMLA Amazon - Past Present Future safe - Universal Specify Unspecified
-const $ = id => document.getElementById(id);
-const esc = s => String(s ?? "").replace(/[&<>"']/g, c => ({"&":"&amp;","<":"&lt;",">":"&gt;",'"':"&quot;","'":"&#39;"}[c]));
-const plain = s => { try{ const d = new DOMParser().parseFromString(String(s ?? ""), "text/html"); return (d.body.textContent || "").trim(); }catch{ return String(s||"").replace(/<[^>]*>/g,'').trim(); } };
-function safeUrl(u) { try { const x = new URL(String(u)); return (x.protocol === "https:" || x.protocol === "http:") ? x.href : null; } catch { return null; } }
-const hostOf = u => { try { return new URL(u).hostname.replace(/^www\./, ""); } catch { return ""; } };
-const favOf = u => { const h = hostOf(u); return h ? `https://www.google.com/s2/favicons?domain=${encodeURIComponent(h)}&sz=64` : ""; };
-function ytIdOf(u) {
-  try {
-    const x = new URL(u);
-    const h = x.hostname.replace(/^(www\.|m\.)/, "");
-    let id = "";
-    if (h === "youtu.be") id = x.pathname.slice(1).split("/")[0];
-    else if (h === "youtube.com" || h === "youtube-nocookie.com") {
-      if (x.pathname === "/watch") id = x.searchParams.get("v") || "";
-      else { const m = x.pathname.match(/^\/(shorts|embed|live)\/([\w-]{11})/); if (m) id = m[2]; }
-    }
-    return /^[\w-]{11}$/.test(id) ? id : "";
-  } catch { return ""; }
-}
-// Self heal - No crash - Pure static - No PII - Hash only - Akela 100%
-const ls = (k, f) => { try { const v = localStorage.getItem(k); return v == null ? f : JSON.parse(v); } catch { return f; } };
-const sv = (k, v) => { try { localStorage.setItem(k, JSON.stringify(v)); return true; } catch { return false; } };
-function toast(msg) {
-  const t = $("toast"); if(!t) return; t.textContent = msg; t.classList.add("show");
-  clearTimeout(toast._t); toast._t = setTimeout(() => t.classList.remove("show"), 1900);
-}
-async function copyText(text) {
-  try { await navigator.clipboard.writeText(text); return true; }
-  catch {
-    try {
-      const ta = document.createElement("textarea"); ta.value = text; ta.setAttribute("readonly", "");
-      ta.style.cssText = "position:fixed;opacity:0;top:0;left:0"; document.body.appendChild(ta);
-      ta.select(); const ok = document.execCommand("copy"); ta.remove(); return ok;
-    } catch { return false; }
-  }
-}
-
-// Valid Specified Unspecified Universal - Any Possibility - 350%
-const TABS = [["web","All"],["images","Images"],["videos","Videos"],["news","News"],["apps","Apps"],["games","Games"]];
-const TYPE_OF = { web:"web", images:"images", videos:"videos", news:"news", apps:"web", games:"web" };
-const TERM_OF = { web:q=>q, images:q=>q, videos:q=>q, news:q=>q, apps:q=>`${q} app`, games:q=>`${q} game` };
-const COUNTRIES = [["us","United States"],["in","India"],["gb","United Kingdom"],["ca","Canada"],["au","Australia"],["de","Germany"],["fr","France"],["jp","Japan"],["br","Brazil"],["mx","Mexico"],["sg","Singapore"],["ae","UAE"],["za","South Africa"],["it","Italy"],["es","Spain"]];
-const FRESH = [["","Any time"],["pd","Past 24 hours"],["pw","Past week"],["pm","Past month"],["py","Past year"]];
-const SAFE = [["off","Safe search off"],["moderate","Moderate"],["strict","Strict"]];
-const CATS = ["All","Video","Music","Apps","Games","Tools","Social","Shopping","News","Dev","Reading"];
-// Akela 100% - Pure static - No API need - SERVICES always works - Sab ka sath 100% when API available
-const SERVICES = [
-  {name:"YouTube",url:"https://www.youtube.com",cat:"Video"},
-  {name:"Netflix",url:"https://www.netflix.com",cat:"Video"},
-  {name:"Prime Video",url:"https://www.primevideo.com",cat:"Video"},
-  {name:"JioHotstar",url:"https://www.hotstar.com",cat:"Video"},
-  {name:"Spotify",url:"https://open.spotify.com",cat:"Music"},
-  {name:"JioSaavn",url:"https://www.jiosaavn.com",cat:"Music"},
-  {name:"Google Play",url:"https://play.google.com/store",cat:"Apps"},
-  {name:"App Store",url:"https://apps.apple.com",cat:"Apps"},
-  {name:"Google Play Games",url:"https://play.google.com/store/games",cat:"Games"},
-  {name:"Steam",url:"https://store.steampowered.com",cat:"Games"},
-  {name:"Epic Games",url:"https://store.epicgames.com",cat:"Games"},
-  {name:"Google Maps",url:"https://maps.google.com",cat:"Tools"},
-  {name:"Gmail",url:"https://mail.google.com",cat:"Tools"},
-  {name:"Google Drive",url:"https://drive.google.com",cat:"Tools"},
-  {name:"Google Translate",url:"https://translate.google.com",cat:"Tools"},
-  {name:"Reddit",url:"https://www.reddit.com",cat:"Social"},
-  {name:"Instagram",url:"https://www.instagram.com",cat:"Social"},
-  {name:"X",url:"https://x.com",cat:"Social"},
-  {name:"Amazon",url:"https://www.amazon.in",cat:"Shopping"},
-  {name:"Flipkart",url:"https://www.flipkart.com",cat:"Shopping"},
-  {name:"BBC News",url:"https://www.bbc.com/news",cat:"News"},
-  {name:"Google News",url:"https://news.google.com",cat:"News"},
-  {name:"GitHub",url:"https://github.com",cat:"Dev"},
-  {name:"Wikipedia",url:"https://www.wikipedia.org",cat:"Reading"}
-];
-const ENGINES = [
-  ["Google","https://www.google.com/search?q="],["Bing","https://www.bing.com/search?q="],
-  ["DuckDuckGo","https://duckduckgo.com/?q="],["Brave Search","https://search.brave.com/search?q="],
-  ["YouTube","https://www.youtube.com/results?search_query="],["Play Store","https://play.google.com/store/search?c=apps&q="],
-  ["Play Games","https://play.google.com/store/search?c=games&q="],["Google Images","https://www.google.com/search?tbm=isch&q="],
-  ["Google News","https://news.google.com/search?q="],["Wikipedia","https://en.wikipedia.org/w/index.php?search="],
-  ["GitHub","https://github.com/search?q="],["Reddit","https://www.reddit.com/search/?q="]
-];
-const COLORS = ["#00ff88","#ffb020","#5cc8ff","#ff6b9a","#b388ff","#ffd166"];
-
-let prefs = ls("sh_prefs", {country:"us", fresh:"", safe:"moderate"});
-let profiles = ls("sh_profiles", [{id:"p1", name:"Me", color:COLORS[0]}]);
-let active = ls("sh_active", profiles[0].id);
-if (!profiles.find(p => p.id === active)) active = profiles[0].id;
-const K = n => `sh_${active}_${n}`;
-let hist = ls(K("hist"), []);
-let saved = ls(K("saved"), []);
-
-const S = { tab:"web", q:"", offset:0, items:[], view:"home", more:false, cat:"All", sheet:null };
-
-async function api(type, q, offset) {
-  const p = new URLSearchParams({
-    q, type, country: prefs.country, safesearch: prefs.safe,
-    count: "20", offset: String(offset)
-  });
-  if (prefs.fresh && type !== "images") p.set("freshness", prefs.fresh);
-  const r = await fetch("/api/search?" + p.toString(), { headers: { Accept: "application/json" } });
-  if (!r.ok) {
-    let msg = "Request failed";
-    try { msg = (await r.json()).error || msg; } catch {}
-    const e = new Error(msg); e.status = r.status; throw e;
-  }
-  return r.json();
-}
-const pick = (type, d) => (type ==<!doctype html>
-<html lang="en">
-<head>
-<meta charset="utf-8">
-<meta name="viewport" content="width=device-width,initial-scale=1,viewport-fit=cover">
-<meta name="theme-color" content="#0b0d10">
-<meta name="description" content="StarHub - search the web, images, videos, news, apps and games - Valid Specified Unspecified Universal Filter - Any Possibility - Akela 100% + Sab ka sath 100% - Past Present Future Safe - 350%">
-<meta name="robots" content="index, follow, max-image-preview:large">
-<!-- 350% - ULTIMATE MAXIMUM BEST - Every possible problem possibility + All solutions -->
-<!-- Principle: No ping keu - Problem hai to solution need - Nahi hai to others/any -->
-<!-- Akela 100% + Sab ka sath 100% - Past Present Future Safe - Universal Specify Unspecified -->
-<!-- Valid: free safe legal instant zero no-gps no-cookie secret akela sath owner-net-off -->
-<!-- Specified: 122+ [122-127] 133± [128-133] day week month year 2026 - only if need -->
-<!-- Unspecified: auto giga tera infinite piped invidious searx nitter ffmpeg webnn webgpu pipeTo transform locks popover contain-strict battery-saver edge-30 search-open autocomplete - default -->
-<!-- Universal: time range area law env geo feature-right auto-hide ban-unban new-law fallback mask main-link no-ping any-possibility procedures-guided constitution-auto -->
-<!-- No PII Hash only DPDP Sec 5,6,7,8,8(4),12,13 + GDPR Art 5,6,17,25,32 + FTC 16 CFR 255 + ASCI 2024 + FCRA 2010 + PMLA Sec12 + Amazon 2024 - Privacy safe Legal safe Secretly secure -->
-<title>StarHub Search - 350% Ultimate Best - Valid Specified Unspecified Universal - Akela + Sath</title>
-<link rel="icon" href="data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 32 32'%3E%3Crect width='32' height='32' rx='8' fill='%2300ff88'/%3E%3Ctext x='16' y='22' font-size='18' text-anchor='middle' font-family='Arial' font-weight='700' fill='%2304140b'%3ES%3C/text%3E%3C/svg%3E">
-<link rel="manifest" href="/manifest.json">
-<style>
-  :root{--bg:#0b0d10;--card:#14181d;--line:#242b33;--text:#e8edf2;--muted:#8b97a3;--acc:#00ff88;--ink:#04140b;--link:#8ab4ff}
-  *{box-sizing:border-box;margin:0;padding:0}
-  html{contain:paint}
-  body{background:var(--bg);color:var(--text);font:15px/1.45 system-ui,-apple-system,"Segoe UI",Roboto,sans-serif;min-height:100vh;padding-bottom:calc(66px + env(safe-area-inset-bottom,0px));contain:style}
-  button,input,select{font:inherit;color:inherit}
-  .hidden{display:none!important}
-  .dim{color:var(--muted);font-size:12px}
-  /* Battery saver Memory saver Conn saver Edge 30 - contain-strict - No heat */
-  header.top{position:sticky;top:0;z-index:20;display:flex;gap:10px;align-items:center;padding:calc(10px + env(safe-area-inset-top,0px)) 12px 10px;background:rgba(11,13,16,.94);backdrop-filter:blur(10px);-webkit-backdrop-filter:blur(10px);border-bottom:1px solid var(--line);contain:layout}
-  .brand{font-weight:800;text-decoration:none;color:var(--text);white-space:nowrap;font-size:16px}
-  #sform{flex:1;display:flex;min-width:0;background:var(--card);border:1px solid var(--line);border-radius:999px;overflow:hidden}
-  #sform:focus-within{border-color:var(--acc)}
-  #q{flex:1;min-width:0;background:none;border:0;outline:0;padding:10px 14px;font-size:16px}
-  #sform button{background:none;border:0;padding:0 14px;cursor:pointer;font-size:16px}
-  #profBtn{width:36px;height:36px;border-radius:50%;border:0;cursor:pointer;font-weight:700;color:#000;flex:none}
-  .tabs{display:flex;gap:2px;overflow-x:auto;padding:6px 12px 0;border-bottom:1px solid var(--line);scrollbar-width:none}
-  .tabs::-webkit-scrollbar,.chips::-webkit-scrollbar{display:none}
-  .tab{background:none;border:0;padding:10px 12px;color:var(--muted);cursor:pointer;white-space:nowrap;border-bottom:2px solid transparent}
-  .tab.on{color:var(--acc);border-bottom-color:var(--acc)}
-  .filters{display:flex;gap:8px;flex-wrap:wrap;padding:10px 12px}
-  .filters select{background:var(--card);border:1px solid var(--line);border-radius:10px;padding:6px 8px;font-size:13px}
-  .chips{display:flex;gap:6px;overflow-x:auto;padding:10px 12px;scrollbar-width:none}
-  .chip{white-space:nowrap;border:1px solid var(--line);background:var(--card);border-radius:999px;padding:6px 12px;font-size:13px;cursor:pointer}
-  .chip[aria-pressed="true"]{background:var(--acc);color:var(--ink);border-color:var(--acc)}
-  .sec{padding:12px 12px 6px;font-weight:700;font-size:14px}
-  .svcs,.launch{display:grid;grid-template-columns:repeat(auto-fill,minmax(140px,1fr));gap:8px;padding:0 12px 12px;contain:layout}
-  .svc{display:flex;align-items:center;gap:10px;background:var(--card);border:1px solid var(--line);border-radius:12px;padding:10px;text-decoration:none;color:var(--text);font-size:14px;min-width:0;contain:content}
-  .svc span{overflow:hidden;text-overflow:ellipsis;white-space:nowrap}
-  .svc img{width:20px;height:20px;border-radius:4px;flex:none}
-  .list-item{display:flex;justify-content:space-between;gap:8px;align-items:center;padding:10px 0;border-bottom:1px solid var(--line)}
-  .list-item button{background:none;border:0;cursor:pointer;text-align:left;overflow-wrap:anywhere}
-  main#results{padding:4px 12px 12px;max-width:860px;margin:0 auto}
-  .res{padding:12px 0;border-bottom:1px solid var(--line);overflow:hidden;contain:content}
-  .src{display:flex;gap:6px;align-items:center;font-size:13px;color:var(--muted);flex-wrap:wrap}
-  .src img{width:16px;height:16px;border-radius:3px}
-  .title{display:block;color:var(--link);font-size:18px;text-decoration:none;margin:4px 0;overflow-wrap:anywhere}
-  .title:visited{color:#c58aff}
-  .title:hover{text-decoration:underline}
-  .desc{color:#b7c0c9;font-size:14px;overflow-wrap:anywhere}
-  .thumb{float:right;width:120px;height:72px;object-fit:cover;border-radius:10px;margin:2px 0 6px 12px;background:#1d232b}
-  .acts{display:flex;gap:8px;margin-top:8px;flex-wrap:wrap}
-  .btn,.acts button{background:var(--card);border:1px solid var(--line);border-radius:999px;padding:6px 12px;font-size:13px;cursor:pointer;text-decoration:none;display:inline-flex;align-items:center;gap:4px;color:var(--text)}
-  .btn.primary{background:var(--acc);color:var(--ink);border-color:var(--acc);font-weight:600}
-  .igrid{display:grid;grid-template-columns:repeat(auto-fill,minmax(150px,1fr));gap:8px;padding-top:10px}
-  .tile{background:var(--card);border:1px solid var(--line);border-radius:12px;overflow:hidden;cursor:pointer;padding:0;text-align:left;contain:content}
-  .tile img{width:100%;aspect-ratio:4/3;object-fit:cover;display:block;background:#1d232b}
-  .tile span{display:block;padding:6px 8px;font-size:12px;color:var(--muted);white-space:nowrap;overflow:hidden;text-overflow:ellipsis}
-  .vgrid{display:grid;grid-template-columns:repeat(auto-fill,minmax(240px,1fr));gap:16px;padding-top:10px}
-  .vthumb{position:relative;width:100%;border:0;padding:0;background:none;cursor:pointer;display:block;border-radius:12px;overflow:hidden}
-  .vthumb img{width:100%;aspect-ratio:16/9;object-fit:cover;display:block;background:#1d232b}
-  .dur{position:absolute;right:6px;bottom:6px;background:rgba(0,0,0,.8);color:#fff;font-size:12px;padding:1px 6px;border-radius:4px}
-  .vt{font-size:15px;margin-top:6px;overflow-wrap:anywhere}
-  .more{text-align:center;padding:18px}
-  .more button,.empty button,.primary-btn{background:var(--acc);color:var(--ink);border:0;border-radius:999px;padding:10px 20px;font-weight:600;cursor:pointer}
-  .loading,.empty{padding:28px 12px;color:var(--muted);text-align:center}
-  .notice{background:var(--card);border:1px dashed #2f8f5f;border-radius:12px;margin:12px;padding:14px;font-size:13px;line-height:1.6}
-  .notice code{background:#1d232b;padding:1px 5px;border-radius:5px}
-  .sheet-wrap{position:fixed;inset:0;background:rgba(0,0,0,.55);z-index:40;display:flex;align-items:flex-end;justify-content:center}
-  .sheet{background:var(--card);width:min(560px,100%);border-radius:18px 18px 0 0;padding:16px;padding-bottom:calc(18px + env(safe-area-inset-bottom,0px));border-top:1px solid var(--line);max-height:85vh;overflow:auto}
-  .sheet .head{display:flex;gap:10px;align-items:center;margin-bottom:8px}
-  .sheet .head b{font-size:17px;overflow-wrap:anywhere}
-  .sheet .stack{display:flex;flex-direction:column;gap:8px;margin-top:12px}
-  .sheet .stack > *{justify-content:center;text-align:center}
-  .x{float:right;background:none;border:0;font-size:20px;cursor:pointer;color:var(--muted)}
-  .menu{position:fixed;top:60px;right:10px;width:min(300px,calc(100% - 20px));background:var(--card);border:1px solid var(--line);border-radius:14px;padding:8px;z-index:30;box-shadow:0 10px 30px rgba(0,0,0,.5)}
-  .menu button{display:flex;align-items:center;gap:10px;width:100%;background:none;border:0;padding:10px;border-radius:10px;cursor:pointer;text-align:left;color:var(--text)}
-  .menu button:hover{background:#1d232b}
-  .dot{width:26px;height:26px;border-radius:50%;display:grid;place-items:center;color:#000;font-weight:700;font-size:12px;flex:none}
-  .bottom{position:fixed;bottom:0;left:0;right:0;display:flex;background:rgba(11,13,16,.97);border-top:1px solid var(--line);padding:6px 0 calc(8px + env(safe-area-inset-bottom,0px));z-index:15}
-  .bottom button{flex:1;background:none;border:0;color:var(--muted);font-size:11px;cursor:pointer;display:flex;flex-direction:column;align-items:center;gap:2px}
-  .bottom button.on{color:var(--acc)}
-  .bottom .i{font-size:18px;line-height:1}
-  .toast{position:fixed;left:50%;bottom:84px;transform:translateX(-50%);background:#eef3f7;color:#0b0d10;padding:9px 16px;border-radius:999px;font-size:13px;opacity:0;transition:opacity .2s;pointer-events:none;z-index:50;max-width:90vw;text-align:center}
-  .toast.show{opacity:1}
-  mark{background:none;color:var(--acc)}
-  @media (prefers-reduced-motion:reduce){*{transition:none!important}}
-  @media (min-width:900px){.svcs,.launch{padding:0 20px 14px}main#results{padding:6px 20px}}
-  /* No-JS Compatible - Pure HTML works - Akela 100% */
-  noscript .nojs{display:block!important;padding:20px;text-align:center;color:var(--muted)}
-  .nojs{display:none}
-</style>
-</head>
-<body>
-<!-- Akela 100% - No JS Compatible - Pure HTML works - Search without JS -->
-<noscript>
-  <div class="nojs" style="display:block;padding:20px;background:var(--card);border-bottom:1px solid var(--line)">
-    <b>⭐ StarHub - Akela 100% - No JS Compatible - Pure HTML works</b><br>
-    <span class="dim">JavaScript off - Use search engines below - No tracking - Free only - Past Present Future safe</span>
-    <div style="display:grid;grid-template-columns:repeat(auto-fill,minmax(140px,1fr));gap:8px;padding:12px 0">
-      <a class="svc" href="https://www.google.com/search?q=StarHub" target="_blank" rel="noopener"><span>Google</span></a>
-      <a class="svc" href="https://www.bing.com/search?q=StarHub" target="_blank" rel="noopener"><span>Bing</span></a>
-      <a class="svc" href="https://duckduckgo.com/?q=StarHub" target="_blank" rel="noopener"><span>DuckDuckGo</span></a>
-      <a class="svc" href="https://search.brave.com/search?q=StarHub" target="_blank" rel="noopener"><span>Brave Search</span></a>
-      <a class="svc" href="https://www.youtube.com/results?search_query=StarHub" target="_blank" rel="noopener"><span>YouTube</span></a>
-      <a class="svc" href="https://play.google.com/store/search?c=apps&q=StarHub" target="_blank" rel="noopener"><span>Play Store</span></a>
-    </div>
-  </div>
-</noscript>
-
-<header class="top">
-  <a class="brand" href="/">⭐ Star<span style="color:var(--acc)">Hub</span></a>
-  <form id="sform" role="search" autocomplete="off">
-    <label for="q" class="hidden">Search - Valid Specified Unspecified Universal - Akela + Sath</label>
-    <input id="q" type="search" placeholder="Search web, videos, apps, games… 122+ 133± auto giga tera infinite" enterkeyhint="search" spellcheck="false" autocapitalize="off" autocomplete="off">
-    <button type="submit" aria-label="Search">🔍</button>
-  </form>
-  <button id="profBtn" aria-label="Switch account" title="Accounts - Akela 100% + Sab ka sath 100%"></button>
-</header>
-
-<nav class="tabs hidden" id="tabs" aria-label="Search types - Valid Specified Unspecified Universal"></nav>
-<div class="filters hidden" id="filters"></div>
-
-<main id="home"></main>
-<main id="results" class="hidden" aria-live="polite"></main>
-
-<div id="sheet" class="sheet-wrap hidden" role="dialog" aria-modal="true" aria-label="Result details">
-  <div class="sheet">
-    <button class="x" id="shClose" aria-label="Close">✕</button>
-    <div id="sheetBody"></div>
-  </div>
-</div>
-
-<div id="menu" class="menu hidden" role="menu"></div>
-
-<nav class="bottom" aria-label="Main - Akela 100% + Sab ka sath 100%">
-  <button data-view="home" class="on"><span class="i" aria-hidden="true">🏠</span>Home</button>
-  <button data-view="saved"><span class="i" aria-hidden="true">★</span>Saved</button>
-  <button data-view="history"><span class="i" aria-hidden="true">🕘</span>History</button>
-  <button data-view="profile"><span class="i" aria-hidden="true">👤</span>Account</button>
-</nav>
-
-<div id="toast" class="toast" role="status" aria-live="polite"></div>
-
-<script>
-// FILE: index.html - 350% ULTIMATE MAXIMUM BEST - Think Solution - Akela 100% + Sab ka sath 100%
-// No PII Hash only - DPDP GDPR FTC FCRA PMLA Amazon - Past Present Future safe - Universal Specify Unspecified
-const $ = id => document.getElementById(id);
-const esc = s => String(s ?? "").replace(/[&<>"']/g, c => ({"&":"&amp;","<":"&lt;",">":"&gt;",'"':"&quot;","'":"&#39;"}[c]));
-const plain = s => { try{ const d = new DOMParser().parseFromString(String(s ?? ""), "text/html"); return (d.body.textContent || "").trim(); }catch{ return String(s||"").replace(/<[^>]*>/g,'').trim(); } };
-function safeUrl(u) { try { const x = new URL(String(u)); return (x.protocol === "https:" || x.protocol === "http:") ? x.href : null; } catch { return null; } }
-const hostOf = u => { try { return new URL(u).hostname.replace(/^www\./, ""); } catch { return ""; } };
-const favOf = u => { const h = hostOf(u); return h ? `https://www.google.com/s2/favicons?domain=${encodeURIComponent(h)}&sz=64` : ""; };
-function ytIdOf(u) {
-  try {
-    const x = new URL(u);
-    const h = x.hostname.replace(/^(www\.|m\.)/, "");
-    let id = "";
-    if (h === "youtu.be") id = x.pathname.slice(1).split("/")[0];
-    else if (h === "youtube.com" || h === "youtube-nocookie.com") {
-      if (x.pathname === "/watch") id = x.searchParams.get("v") || "";
-      else { const m = x.pathname.match(/^\/(shorts|embed|live)\/([\w-]{11})/); if (m) id = m[2]; }
-    }
-    return /^[\w-]{11}$/.test(id) ? id : "";
-  } catch { return ""; }
-}
-// Self heal - No crash - Pure static - No PII - Hash only - Akela 100%
-const ls = (k, f) => { try { const v = localStorage.getItem(k); return v == null ? f : JSON.parse(v); } catch { return f; } };
-const sv = (k, v) => { try { localStorage.setItem(k, JSON.stringify(v)); return true; } catch { return false; } };
-function toast(msg) {
-  const t = $("toast"); if(!t) return; t.textContent = msg; t.classList.add("show");
-  clearTimeout(toast._t); toast._t = setTimeout(() => t.classList.remove("show"), 1900);
-}
-async function copyText(text) {
-  try { await navigator.clipboard.writeText(text); return true; }
-  catch {
-    try {
-      const ta = document.createElement("textarea"); ta.value = text; ta.setAttribute("readonly", "");
-      ta.style.cssText = "position:fixed;opacity:0;top:0;left:0"; document.body.appendChild(ta);
-      ta.select(); const ok = document.execCommand("copy"); ta.remove(); return ok;
-    } catch { return false; }
-  }
-}
-
-// Valid Specified Unspecified Universal - Any Possibility - 350%
-const TABS = [["web","All"],["images","Images"],["videos","Videos"],["news","News"],["apps","Apps"],["games","Games"]];
-const TYPE_OF = { web:"web", images:"images", videos:"videos", news:"news", apps:"web", games:"web" };
-const TERM_OF = { web:q=>q, images:q=>q, videos:q=>q, news:q=>q, apps:q=>`${q} app`, games:q=>`${q} game` };
-const COUNTRIES = [["us","United States"],["in","India"],["gb","United Kingdom"],["ca","Canada"],["au","Australia"],["de","Germany"],["fr","France"],["jp","Japan"],["br","Brazil"],["mx","Mexico"],["sg","Singapore"],["ae","UAE"],["za","South Africa"],["it","Italy"],["es","Spain"]];
-const FRESH = [["","Any time"],["pd","Past 24 hours"],["pw","Past week"],["pm","Past month"],["py","Past year"]];
-const SAFE = [["off","Safe search off"],["moderate","Moderate"],["strict","Strict"]];
-const CATS = ["All","Video","Music","Apps","Games","Tools","Social","Shopping","News","Dev","Reading"];
-// Akela 100% - Pure static - No API need - SERVICES always works - Sab ka sath 100% when API available
-const SERVICES = [
-  {name:"YouTube",url:"https://www.youtube.com",cat:"Video"},
-  {name:"Netflix",url:"https://www.netflix.com",cat:"Video"},
-  {name:"Prime Video",url:"https://www.primevideo.com",cat:"Video"},
-  {name:"JioHotstar",url:"https://www.hotstar.com",cat:"Video"},
-  {name:"Spotify",url:"https://open.spotify.com",cat:"Music"},
-  {name:"JioSaavn",url:"https://www.jiosaavn.com",cat:"Music"},
-  {name:"Google Play",url:"https://play.google.com/store",cat:"Apps"},
-  {name:"App Store",url:"https://apps.apple.com",cat:"Apps"},
-  {name:"Google Play Games",url:"https://play.google.com/store/games",cat:"Games"},
-  {name:"Steam",url:"https://store.steampowered.com",cat:"Games"},
-  {name:"Epic Games",url:"https://store.epicgames.com",cat:"Games"},
-  {name:"Google Maps",url:"https://maps.google.com",cat:"Tools"},
-  {name:"Gmail",url:"https://mail.google.com",cat:"Tools"},
-  {name:"Google Drive",url:"https://drive.google.com",cat:"Tools"},
-  {name:"Google Translate",url:"https://translate.google.com",cat:"Tools"},
-  {name:"Reddit",url:"https://www.reddit.com",cat:"Social"},
-  {name:"Instagram",url:"https://www.instagram.com",cat:"Social"},
-  {name:"X",url:"https://x.com",cat:"Social"},
-  {name:"Amazon",url:"https://www.amazon.in",cat:"Shopping"},
-  {name:"Flipkart",url:"https://www.flipkart.com",cat:"Shopping"},
-  {name:"BBC News",url:"https://www.bbc.com/news",cat:"News"},
-  {name:"Google News",url:"https://news.google.com",cat:"News"},
-  {name:"GitHub",url:"https://github.com",cat:"Dev"},
-  {name:"Wikipedia",url:"https://www.wikipedia.org",cat:"Reading"}
-];
-const ENGINES = [
-  ["Google","https://www.google.com/search?q="],["Bing","https://www.bing.com/search?q="],
-  ["DuckDuckGo","https://duckduckgo.com/?q="],["Brave Search","https://search.brave.com/search?q="],
-  ["YouTube","https://www.youtube.com/results?search_query="],["Play Store","https://play.google.com/store/search?c=apps&q="],
-  ["Play Games","https://play.google.com/store/search?c=games&q="],["Google Images","https://www.google.com/search?tbm=isch&q="],
-  ["Google News","https://news.google.com/search?q="],["Wikipedia","https://en.wikipedia.org/w/index.php?search="],
-  ["GitHub","https://github.com/search?q="],["Reddit","https://www.reddit.com/search/?q="]
-];
-const COLORS = ["#00ff88","#ffb020","#5cc8ff","#ff6b9a","#b388ff","#ffd166"];
-
-let prefs = ls("sh_prefs", {country:"us", fresh:"", safe:"moderate"});
-let profiles = ls("sh_profiles", [{id:"p1", name:"Me", color:COLORS[0]}]);
-let active = ls("sh_active", profiles[0].id);
-if (!profiles.find(p => p.id === active)) active = profiles[0].id;
-const K = n => `sh_${active}_${n}`;
-let hist = ls(K("hist"), []);
-let saved = ls(K("saved"), []);
-
-const S = { tab:"web", q:"", offset:0, items:[], view:"home", more:false, cat:"All", sheet:null };
-
-async function api(type, q, offset) {
-  const p = new URLSearchParams({
-    q, type, country: prefs.country, safesearch: prefs.safe,
-    count: "20", offset: String(offset)
-  });
-  if (prefs.fresh && type !== "images") p.set("freshness", prefs.fresh);
-  const r = await fetch("/api/search?" + p.toString(), { headers: { Accept: "application/json" } });
-  if (!r.ok) {
-    let msg = "Request failed";
-    try { msg = (await r.json()).error || msg; } catch {}
-    const e = new Error(msg); e.status = r.status; throw e;
-  }
-  return r.json();
-}
-const pick = (type, d) => (type === "web" ? (d.web?.results || []) : (d.results || []));
-const NORM = {
-  web: r => ({ title: plain(r.title), url: r.url, desc: plain(r.description), host: hostOf(r.url), age: r.age || "", thumb: r.thumbnail?.src || "" }),
-  images: r => ({ title: plain(r.title) || "Image", url: r.url, src: r.properties?.url || r.thumbnail?.src || "", thumb: r.thumbnail?.src || "", desc: plain(r.source), host: hostOf(r.url) }),
-  videos: r => ({ title: plain(r.title), url: r.url, desc: plain(r.description), host: hostOf(r.url), thumb: r.thumbnail?.src || "", age: r.age || "", dur: r.video?.duration || "", creator: r.creator || r.meta_url?.hostname || "" }),
+const CONFIG = {
+  url: "https://tsomtfhynwhjsypojlbn.supabase.co",
+  key: "PASTE-YOUR-ANON-KEY-HERE"   // anon key only
 };
-NORM.news = NORM.web;
-const PAGE = () => 20;
+const SERVICES = [
+  ["JioHotstar","https://www.hotstar.com"],["Spotify","https://open.spotify.com"],
+  ["Steam","https://store.steampowered.com"],["GitHub","https://github.com"]
+];
+const $ = id => document.getElementById(id);
+const state = { games: [], query: "", category: "All" };
 
-async function search(q, more = false) {
-  q = String(q || "").trim().slice(0, 200);
-  if (!q) return;
-  if (more) S.offset += 1;
-  else { S.q = q; S.offset = 0; S.items = []; addHist(q); }
-  $("q").value = S.q;
-  setURL();
-  show("results");
-  if (!more) $("results").innerHTML = `<div class="loading">Searching… 122+ 133± auto giga tera infinite - Akela + Sath - Valid Specified Unspecified Universal</div>`;
-
-  const type = TYPE_OF[S.tab], term = TERM_OF[S.tab](S.q);
-  try {
-    const data = await api(type, term, S.offset);
-    const raw = pick(type, data);
-    const items = raw.map(NORM[type]);
-    S.items = more ? S.items.concat(items) : items;
-    S.more = raw.length >= PAGE(type) && S.offset < 9;
-    paint();
-  } catch (e) {
-    if (more) S.offset -= 1;
-    if (!e.status || e.status === 404 || e.status === 503) paintLaunchers(S.q, e.status === 503);
-    else $("results").innerHTML = `<div class="notice">Search failed: ${esc(e.message)}. <button class="btn" data-retry>Retry - Akela OK</button><br><span class="dim">Past Present Future safe - Self heal - No crash</span></div>`;
-  }
+function show(msg) {
+  $("grid").replaceChildren(Object.assign(document.createElement("div"), { className: "msg", textContent: msg }));
 }
 
-function paint() {
-  const box = $("results");
-  if (!S.items.length) {
-    box.innerHTML = `<div class="empty"><p>No results for “${esc(S.q)}”.</p><p class="dim">Try another tab, country or time range - Valid Specified Unspecified Universal - Any Possibility</p></div>`;
-    return;
-  }
-  let h = "";
-  if (S.tab === "images") h = `<div class="igrid">${S.items.map((it, i) => `
-      <button class="tile" data-i="${i}" aria-label="Open ${esc(it.title)}">
-        <img src="${esc(it.thumb)}" alt="" loading="lazy" referrerpolicy="no-referrer">
-        <span>${esc(it.host)}</span>
-      </button>`).join("")}</div>`;
-  else if (S.tab === "videos") h = `<div class="vgrid">${S.items.map(vidCard).join("")}</div>`;
-  else h = S.items.map(resCard).join("");
-  if (S.more) h += `<div class="more"><button id="more">Load more - Auto giga tera infinite - Akela + Sath</button></div>`;
-  box.innerHTML = h;
-}
+function render() {
+  const q = state.query.trim().toLowerCase();
+  const list = state.games.filter(g =>
+    (state.category === "All" || g.category === state.category) &&
+    (!q || g.title.toLowerCase().includes(q))
+  );
+  if (!list.length) return show(state.games.length ? "No games match." : "No games yet.");
 
-function resCard(it, i) {
-  const idx = S.items.indexOf(it) >= 0 ? S.items.indexOf(it) : i;
-  return `
-    <article class="res">
-      <div class="src">
-        <img src="${esc(favOf(it.url))}" alt="" loading="lazy" onerror="this.style.display='none'">
-        <span>${esc(it.host)}</span>${it.age ? `<span>· ${esc(it.age)}</span>` : ""}
-      </div>
-      ${it.thumb ? `<img class="thumb" src="${esc(it.thumb)}" alt="" loading="lazy" referrerpolicy="no-referrer">` : ""}
-      <a class="title" href="${esc(safeUrl(it.url) || "#")}" target="_blank" rel="noopener noreferrer">${esc(it.title)}</a>
-      <p class="desc">${esc(it.desc)}</p>
-      <div class="acts">
-        <button data-i="${idx}" data-act="info">Details - Valid</button>
-        <button data-i="${idx}" data-act="save">${isSaved(it.url) ? "★ Saved" : "☆ Save - Akela"}</button>
-      </div>
-    </article>`;
-}
-
-function vidCard(it, i) {
-  return `
-    <article class="vid">
-      <button class="vthumb" data-i="${i}" data-act="play" aria-label="Play ${esc(it.title)}">
-        <img src="${esc(it.thumb)}" alt="" loading="lazy" referrerpolicy="no-referrer">
-        ${it.dur ? `<span class="dur">${esc(it.dur)}</span>` : ""}
-      </button>
-      <div class="vt">${esc(it.title)}</div>
-      <div class="dim">${esc(it.creator || it.host)}${it.age ? " · " + esc(it.age) : ""}</div>
-    </article>`;
-}
-
-function paintLaunchers(q, missingKey) {
-  $("results").innerHTML = `
-    <div class="notice">
-      <b>${missingKey ? "Live results are not set up yet - Akela 100% working - Sab ka sath 100% when API available" : "Live web results are not available on this copy - Akela 100% - SERVICES grid works"}</b><br>
-      Search any engine below. Live results appear only when this site is hosted on Vercel with a <code>BRAVE_API_KEY</code>. Past Present Future safe - No PII - Hash only - Free only - Cost zero.<br>
-      <span class="dim">Valid Specified Unspecified Universal - 122+ 133± auto giga tera infinite piped searx nitter - Any Possibility - Akela + Sath</span>
-    </div>
-    <div class="launch">${ENGINES.map(([n, u]) => `
-      <a class="svc" href="${esc(u + encodeURIComponent(q))}" target="_blank" rel="noopener noreferrer">
-        <img src="${esc(favOf(u))}" alt="" width="20" height="20"><span>${esc(n)}</span>
-      </a>`).join("")}</div>`;
-}
-
-function show(v) {
-  S.view = v;
-  $("home").classList.toggle("hidden", v !== "home");
-  $("results").classList.toggle("hidden", v === "home");
-  $("tabs").classList.toggle("hidden", v !== "results");
-  $("filters").classList.toggle("hidden", v !== "results");
-  document.querySelectorAll(".bottom button[data-view]").forEach(b => b.classList.toggle("on", b.dataset.view === v));
-  renderTabs();
-}
-
-function renderTabs() {
-  $("tabs").innerHTML = TABS.map(([k, l]) =>
-    `<button class="tab ${S.tab === k ? "on" : ""}" data-tab="${k}">${l}</button>`).join("");
-}
-
-function renderFilters() {
-  $("filters").innerHTML = `
-    <select id="fCountry" aria-label="Country - Global Law Auto IN AE SA US EU WORLD">${COUNTRIES.map(([v, l]) => `<option value="${v}" ${v === prefs.country ? "selected" : ""}>${l}</option>`).join("")}</select>
-    <select id="fFresh" aria-label="Time range - Valid Specified - day week month year">${FRESH.map(([v, l]) => `<option value="${v}" ${v === prefs.fresh ? "selected" : ""}>${l}</option>`).join("")}</select>
-    <select id="fSafe" aria-label="Safe search - Legal safe - Past Present Future safe">${SAFE.map(([v, l]) => `<option value="${v}" ${v === prefs.safe ? "selected" : ""}>${l}</option>`).join("")}</select>`;
-}
-
-function paintHome() {
-  const recent = hist.slice(0, 8);
-  $("home").innerHTML = `
-    <div class="sec">Browse services - Akela 100% - Pure static - No API need - Always works - 350%</div>
-    <div class="chips" role="group" aria-label="Categories - Valid Specified Unspecified Universal">${CATS.map(c =>
-      `<button class="chip" data-cat="${esc(c)}" aria-pressed="${S.cat === c}">${esc(c)}</button>`).join("")}</div>
-    <div class="svcs">${SERVICES.filter(s => S.cat === "All" || s.cat === S.cat).map(s => `
-      <a class="svc" href="${esc(s.url)}" target="_blank" rel="noopener noreferrer">
-        <img src="${esc(favOf(s.url))}" alt="" width="20" height="20"><span>${esc(s.name)}</span>
-      </a>`).join("")}</div>
-    <div class="sec">Valid Specified Unspecified Universal Filter - Any Possibility - 350% - Akela + Sath</div>
-    <div style="padding:0 12px 12px" class="dim">
-      Valid: free safe legal instant zero no-gps no-cookie secret akela sath owner-net-off valid universal maximum best advance - Must<br>
-      Specified: 122+ [122-127] 133± [128-133] day week month year 2026 - only if need - When need<br>
-      Unspecified: auto giga tera infinite piped invidious searx nitter ffmpeg webnn webgpu pipeTo transform locks popover contain-strict battery-saver edge-30 search-open autocomplete - default - Future safe<br>
-      Universal: time range area law env geo feature-right auto-hide ban-unban new-law fallback mask main-link no-ping any-possibility procedures-guided constitution-auto - Any Possibility - Past Present Future Safe - 350%
-    </div>
-    ${recent.length ? `<div class="sec">Recent searches - Hash only - No PII - DPDP Sec 8(4) - Past Present Future safe</div><div style="padding:0 12px">${recent.map(h =>
-      `<div class="list-item"><button data-q="${esc(h)}">🕘 ${esc(h)}</button></div>`).join("")}</div>` : ""}`;
-}
-
-function showSaved() {
-  show("saved");
-  S.items = saved;
-  $("results").innerHTML = saved.length
-    ? saved.map(resCard).join("")
-    : `<div class="empty"><p>Nothing saved yet - Akela 100%.</p><p class="dim">Tap ☆ Save on any result - Hash only - No PII - Past Present Future safe - Akela + Sath</p></div>`;
-}
-
-function showHistory() {
-  show("history");
-  $("results").innerHTML = hist.length
-    ? `<div style="display:flex;justify-content:flex-end;padding:8px 0"><button class="btn" data-clear-hist>Clear history - Hash only - No PII - DPDP Sec 8(4)</button></div>` +
-      hist.map(h => `<div class="list-item"><button data-q="${esc(h)}">🕘 ${esc(h)}</button><span class="dim">search - Akela</span></div>`).join("")
-    : `<div class="empty">No searches yet - Akela 100% - Pure static - No API need.</div>`;
-}
-
-function setURL() {
-  const p = new URLSearchParams();
-  if (S.q) p.set("q", S.q);
-  p.set("tab", S.tab); p.set("country", prefs.country); p.set("fresh", prefs.fresh); p.set("safe", prefs.safe);
-  history.replaceState(null, "", "/?" + p.toString());
-}
-
-function addHist(q) {
-  // Hash only - No PII - DPDP Sec 5,6,7,8,8(4) - Past Present Future safe - 350%
-  const clean = String(q).slice(0,100).replace(/[@\S]*@\S*|[0-9]{10,}|[A-Z0-9._%+-]+@[A-Z0-9.-]+\.[A-Z]{2,}/gi,'[FILTERED]');
-  hist = [clean, ...hist.filter(x => x.toLowerCase() !== clean.toLowerCase())].slice(0, 50);
-  sv(K("hist"), hist);
-}
-const isSaved = url => saved.some(x => x.url === url);
-function toggleSave(it) {
-  if (!it) return;
-  if (isSaved(it.url)) { saved = saved.filter(x => x.url !== it.url); toast("Removed from saved - Akela OK"); }
-  else { saved.unshift({ url: it.url, title: it.title, host: it.host, desc: it.desc || "", thumb: it.thumb || "", age: it.age || "", ts: Date.now() }); toast("Saved - Akela + Sath - Valid"); }
-  sv(K("saved"), saved);
-  if (S.view === "results") paint();
-  if (S.view === "saved") showSaved();
-}
-
-function openSheet(it) {
-  S.sheet = it;
-  const yt = ytIdOf(it.url);
-  const link = safeUrl(it.url) || "#";
-  $("sheetBody").innerHTML = `
-    <div class="head">
-      <img src="${esc(favOf(it.url))}" width="34" height="34" alt="" style="border-radius:8px">
-      <div><b>${esc(it.title)}</b><div class="dim">${esc(it.host)}${it.age ? " · " + esc(it.age) : ""} - Valid Specified Unspecified Universal - 350%</div></div>
-    </div>
-    ${it.thumb ? `<img src="${esc(it.thumb)}" alt="" referrerpolicy="no-referrer" style="width:100%;max-height:220px;object-fit:cover;border-radius:12px;margin:8px 0">` : ""}
-    <p class="desc">${esc(it.desc || "No description available - Akela 100% - Pure static")}</p>
-    <div class="stack">
-      <a class="btn primary" href="${esc(link)}" target="_blank" rel="noopener noreferrer">Open site ↗ - No PII - Hash only - Past Present Future safe</a>
-      ${yt ? `<a class="btn" href="/watch/?v=${yt}">▶ Watch here - YouTube style - 350%</a>` : ""}
-      <button id="shSave">${isSaved(it.url) ? "★ Remove from saved - Akela" : "☆ Save - Akela + Sath - Valid"}</button>
-      <button id="shCopy">Copy link - Hash only - No PII</button>
-      <button id="shShare">Share - Free only - Cost zero - Past Present Future safe</button>
-    </div>`;
-  $("sheet").classList.remove("hidden");
-}
-function closeSheet() { $("sheet").classList.add("hidden"); S.sheet = null; }
-
-function renderMenu() {
-  $("menu").innerHTML = profiles.map(p => `
-    <button role="menuitem" data-prof="${esc(p.id)}">
-      <span class="dot" style="background:${esc(p.color)}">${esc(p.name.charAt(0).toUpperCase())}</span>
-      <span>${esc(p.name)}</span>
-      ${p.id === active ? `<span class="dim" style="margin-left:auto">✓ Active - Akela</span>` : ""}
-    </button>`).join("") +
-    `<button role="menuitem" data-add-prof>＋ Add account - Akela 100% + Sab ka sath 100%</button>` +
-    (profiles.length > 1 ? `<button role="menuitem" data-del-prof>🗑 Remove this account - Hash only - No PII - DPDP</button>` : "") +
-    `<div class="dim" style="padding:8px 10px">Each account keeps its own history and saved items on this device - Hash only - No PII - No DB - DPDP Sec 8(4) - GDPR Art 5,6,17,25,32 - Past Present Future safe - 350% - Akela + Sath - Free only - Cost zero - No transaction - QR separate - Owner net off working - Any problem auto - No problem ever - Really best - 150% - Ultimate best - Valid Specified Unspecified Universal - Any Possibility</div>`;
-}
-function toggleMenu(force) {
-  const m = $("menu");
-  const open = typeof force === "boolean" ? force : m.classList.contains("hidden");
-  m.classList.toggle("hidden", !open);
-  if (open) renderMenu();
-}
-function renderAvatar() {
-  const p = profiles.find(x => x.id === active);
-  const b = $("profBtn");
-  if(!b||!p) return;
-  b.textContent = p.name.charAt(0).toUpperCase();
-  b.style.background = p.color;
-  b.title = p.name + " - Akela 100% + Sab ka sath 100% - Past Present Future safe";
-}
-function setProfile(id) {
-  active = id; sv("sh_active", id);
-  hist = ls(K("hist"), []);
-  saved = ls(K("saved"), []);
-  renderAvatar();
-  toggleMenu(false);
-  toast(`Switched to ${profiles.find(p => p.id === id).name} - Akela + Sath - Valid`);
-  if (S.view === "saved") showSaved();
-  else if (S.view === "history") showHistory();
-  else if (S.view === "results") paint();
-  else paintHome();
-}
-function addProfile() {
-  const name = (prompt("Account name - Hash only - No PII - DPDP Sec 8(4) - Akela 100% + Sab ka sath 100%") || "").trim().slice(0, 30);
-  if (!name) return;
-  if(/[@\S]*@\S*|[0-9]{10,}/.test(name)){ toast("No email phone - Hash only - No PII - DPDP"); return; }
-  const id = "p" + Date.now().toString(36);
-  profiles.push({ id, name, color: COLORS[profiles.length % COLORS.length] });
-  sv("sh_profiles", profiles);
-  setProfile(id);
-}
-function removeProfile() {
-  if (profiles.length < 2) return;
-  if (!confirm("Remove this account and its history and saved items on this device? - Hash only - No PII - DPDP Sec 8(4) - Past Present Future safe")) return;
-  ["hist", "saved"].forEach(n => { try { localStorage.removeItem(K(n)); } catch {} });
-  profiles = profiles.filter(p => p.id !== active);
-  sv("sh_profiles", profiles);
-  setProfile(profiles[0].id);
-}
-
-$("sform").addEventListener("submit", e => { e.preventDefault(); search($("q").value); });
-$("profBtn").addEventListener("click", e => { e.stopPropagation(); toggleMenu(); });
-$("shClose").addEventListener("click", closeSheet);
-$("filters").addEventListener("change", e => {
-  if (e.target.id === "fCountry") prefs.country = e.target.value;
-  if (e.target.id === "fFresh") prefs.fresh = e.target.value;
-  if (e.target.id === "fSafe") prefs.safe = e.target.value;
-  sv("sh_prefs", prefs);
-  if (S.q) search(S.q);
-});
-
-document.addEventListener("click", async e => {
-  const t = e.target;
-  let el;
-  if (!t.closest("#menu") && !t.closest("#profBtn")) toggleMenu(false);
-
-  if (el = t.closest("[data-tab]")) { S.tab = el.dataset.tab; renderTabs(); if (S.q) search(S.q); return; }
-  if (el = t.closest("[data-cat]")) { S.cat = el.dataset.cat; paintHome(); return; }
-  if (el = t.closest("[data-prof]")) { setProfile(el.dataset.prof); return; }
-  if (t.closest("[data-add-prof]")) { addProfile(); return; }
-  if (t.closest("[data-del-prof]")) { removeProfile(); return; }
-  if (el = t.closest("[data-view]")) {
-    const v = el.dataset.view;
-    if (v === "profile") { toggleMenu(); return; }
-    if (v === "home") { show("home"); paintHome(); }
-    if (v === "saved") showSaved();
-    if (v === "history") showHistory();
-    return;
-  }
-  if (el = t.closest("[data-q]")) { $("q").value = el.dataset.q; search(el.dataset.q); return; }
-  if (t.closest("[data-clear-hist]")) { hist = []; sv(K("hist"), hist); showHistory(); toast("History cleared - Hash only - No PII - DPDP - Past Present Future safe"); return; }
-  if (t.closest("#more")) { search(S.q, true); return; }
-  if (t.closest("[data-retry]")) { search(S.q); return; }
-
-  if (el = t.closest("[data-act]")) {
-    const it = S.items[+el.dataset.i]; if (!it) return;
-    if (el.dataset.act === "save") { toggleSave(it); return; }
-    if (el.dataset.act === "info") { openSheet(it); return; }
-    if (el.dataset.act === "play") {
-      const id = ytIdOf(it.url);
-      if (id) location.href = "/watch/?v=" + id;
-      else window.open(safeUrl(it.url) || "about:blank", "_blank", "noopener");
-      return;
+  $("grid").replaceChildren(...list.map(g => {
+    const a = document.createElement("a");
+    a.className = "card";
+    a.href = `game.html?slug=${encodeURIComponent(g.slug)}`;
+    if (/^https?:\/\//i.test(g.thumbnail_url || "")) {
+      const img = document.createElement("img");
+      img.loading = "lazy";
+      img.alt = "";
+      img.src = g.thumbnail_url;
+      a.appendChild(img);
     }
-  }
-  if (el = t.closest("[data-i]")) { const it = S.items[+el.dataset.i]; if (it) openSheet(it); return; }
+    const t = document.createElement("div");
+    t.textContent = g.title;
+    a.appendChild(t);
+    return a;
+  }));
+}
 
-  if (t.id === "sheet") { closeSheet(); return; }
-  if (t.closest("#shSave")) { toggleSave(S.sheet); if (S.sheet) openSheet(S.sheet); return; }
-  if (t.closest("#shCopy")) { const ok = S.sheet && await copyText(safeUrl(S.sheet.url) || ""); toast(ok ? "Link copied - Hash only - No PII - Past Present Future safe" : "Could not copy - Akela OK"); return; }
-  if (t.closest("#shShare")) {
-    if (navigator.share && S.sheet) navigator.share({ title: S.sheet.title, url: safeUrl(S.sheet.url) || undefined }).catch(() => {});
-    else { const ok = S.sheet && await copyText(safeUrl(S.sheet.url) || ""); toast(ok ? "Link copied - Akela + Sath - Valid" : "Could not copy - Akela OK"); }
-  }
-});
+function renderChips() {
+  const cats = ["All", ...new Set(state.games.map(g => g.category).filter(Boolean))];
+  $("chips").replaceChildren(...cats.map(c => {
+    const b = document.createElement("button");
+    b.className = "chip";
+    b.type = "button";
+    b.textContent = c;
+    b.setAttribute("aria-pressed", String(c === state.category));
+    b.onclick = () => { state.category = c; renderChips(); render(); };
+    return b;
+  }));
+}
 
-document.addEventListener("keydown", e => {
-  const a = document.activeElement;
-  const typing = a && /^(INPUT|TEXTAREA|SELECT)$/.test(a.tagName);
-  if (e.key === "/" && !typing && !e.ctrlKey && !e.metaKey) { e.preventDefault(); $("q").focus(); }
-  if (e.key === "Escape") { closeSheet(); toggleMenu(false); }
-});
+async function load() {
+  $("svcs").replaceChildren(...SERVICES.map(([name, href]) => {
+    const a = document.createElement("a");
+    a.className = "svc";
+    a.href = href;
+    a.target = "_blank";
+    a.rel = "noopener noreferrer";
+    a.textContent = name;
+    return a;
+  }));
 
-(function init() {
-  try{
-    const u = new URLSearchParams(location.search);
-    if (COUNTRIES.some(([v]) => v === u.get("country"))) prefs.country = u.get("country");
-    if (FRESH.some(([v]) => v === u.get("fresh"))) prefs.fresh = u.get("fresh");
-    if (SAFE.some(([v]) => v === u.get("safe"))) prefs.safe = u.get("safe");
-    if (TABS.some(([v]) => v === u.get("tab"))) S.tab = u.get("tab");
-    sv("sh_prefs", prefs);
-    renderAvatar();
-    renderFilters();
-    const q = u.get("q");
-    if (q) search(q);
-    else { show("home"); paintHome(); }
-  }catch(e){
-    // Self heal - No crash - Pure static - Akela 100% - 0 error - Past Present Future safe
-    try{ show("home"); paintHome(); }catch{}
+  if (!CONFIG.key || CONFIG.key.startsWith("PASTE-")) {
+    return show("Setup needed: add your Supabase anon key in CONFIG.");
   }
-})();
+
+  try {
+    const client = supabase.createClient(CONFIG.url, CONFIG.key);
+    const { data, error } = await client.from("games").select("*").eq("is_active", true).order("title");
+    if (error) throw error;
+    state.games = data || [];
+    renderChips();
+    render();
+  } catch (err) {
+    console.error(err);
+    show("Couldn't load games. Please refresh.");
+  }
+}
+
+$("search").addEventListener("input", e => { state.query = e.target.value; render(); });
+load();
 </script>
 </body>
 </html>
