@@ -47,6 +47,7 @@ const CONFIG = {
 const $ = id => document.getElementById(id);
 const frame = $("frame");
 const SLUG_RE = /^[a-z0-9][a-z0-9-]*$/i;
+const COOLDOWN_MS = 3000;
 let game = null, client = null, pendingScore = null, lastSave = 0;
 
 const setStatus = m => { $("status").textContent = m; };
@@ -90,19 +91,30 @@ window.addEventListener("message", e => {
   }
 });
 
+/* ===== Save: requires a logged-in user ===== */
 $("save").onclick = async () => {
   if (pendingScore == null || !game || !client) return;
-  if (Date.now() - lastSave < 3000) return setStatus("Wait a moment before saving again.");
+  if (Date.now() - lastSave < COOLDOWN_MS) return setStatus("Wait a moment before saving again.");
+
+  const { data: { session } } = await client.auth.getSession();
+  if (!session) return setStatus("Log in on the Game Hub to save scores.");
+
   lastSave = Date.now();
   $("save").disabled = true;
+  const score = pendingScore;
 
-  const { error } = await client.from("scores").insert({ game_id: game.id, score: pendingScore });
+  const { error } = await client.from("scores").insert({
+    game_id: game.id,
+    user_id: session.user.id,
+    score
+  });
+
   if (error) {
     console.error(error);
     setStatus("Couldn't save score. Try again.");
     $("save").disabled = false;
   } else {
-    setStatus(`Score ${pendingScore} saved.`);
+    setStatus(`Score ${score} saved.`);
     pendingScore = null;
   }
 };
