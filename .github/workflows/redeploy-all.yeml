@@ -1,0 +1,29 @@
+name: Redeploy All
+on:
+  workflow_dispatch:
+  repository_dispatch:
+    types: [env-updated]
+permissions:
+  contents: read
+jobs:
+  redeploy:
+    runs-on: ubuntu-latest
+    steps:
+      - name: Trigger deploy hooks
+        env:
+          VERCEL_DEPLOY_HOOK: ${{ secrets.VERCEL_DEPLOY_HOOK }}
+          NETLIFY_BUILD_HOOK: ${{ secrets.NETLIFY_BUILD_HOOK }}
+          RENDER_DEPLOY_HOOK: ${{ secrets.RENDER_DEPLOY_HOOK }}
+          CLOUDFLARE_DEPLOY_HOOK: ${{ secrets.CLOUDFLARE_DEPLOY_HOOK }}
+        run: |
+          for name in VERCEL NETLIFY RENDER CLOUDFLARE; do
+            var="${name}_DEPLOY_HOOK"
+            [ "$name" = "NETLIFY" ] && var="NETLIFY_BUILD_HOOK"
+            url="${!var}"
+            if [ -n "$url" ]; then
+              echo "Triggering $name"
+              curl -fsS -X POST "$url" && echo "OK: $name" || echo "FAILED: $name"
+            else
+              echo "Skip $name (secret not set)"
+            fi
+          done
