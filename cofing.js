@@ -6,7 +6,7 @@ window.SITE_CONFIG = {
     "https://starhubigdp.vercel.app",
     "https://starhubigdp.pages.dev",
     "https://starhubigdp.netlify.app",
-    "https://starhubigdp.surge.sh"
+    "https://starhub-eta-surge.sh"
     // naya domain yahan add karo
   ],
   apis: {
