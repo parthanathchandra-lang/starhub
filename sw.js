@@ -1,13 +1,40 @@
-// sw.js - FINAL 1011% BEST - OFFLINE PWA - NO HEAT - UNIVERSAL SPECIFY
-const CACHE='starhub-v1011-final-best';const CORE=['/','/index.html','/lib/feature-manager.js'];
-self.addEventListener('install',e=>{e.waitUntil(caches.open(CACHE).then(c=>c.addAll(CORE).catch(()=>{})).then(()=>self.skipWaiting()));});
-self.addEventListener('activate',e=>{e.waitUntil(caches.keys().then(k=>Promise.all(k.filter(x=>x!==CACHE).map(x=>caches.delete(x)))).then(()=>self.clients.claim()));});
-self.addEventListener('fetch',e=>{
-  const url=new URL(e.request.url);
-  if(url.pathname.startsWith('/api/')){
-    e.respondWith(fetch(e.request).then(r=>{if(r.ok){const cl=r.clone();caches.open(CACHE).then(cache=>cache.put(e.request,cl).catch(()=>{}));}return r;}).catch(()=>caches.match(e.request).then(c=>c||new Response(JSON.stringify({cleaned:true,fallback:true,universal:true,specified:false,need122_133:true,secretlySecure:true,akela:true,sath:true}),{headers:{'Content-Type':'application/json'}}))));
-    return;
-  }
-  if(e.request.method!=='GET')return;
-  e.respondWith(caches.match(e.request).then(cached=> cached||fetch(e.request).then(res=>{const clone=res.clone();if(res.ok)caches.open(CACHE).then(cache=>cache.put(e.request,clone).catch(()=>{}));return res;}).catch(()=>caches.match('/index.html'))));
+// sw.js - Offline shell. Network-first. Supabase, API aur POST requests ko touch nahi karta.
+const CACHE = "game-hub-v4";
+const SHELL = ["/", "/index.html", "/config.js"];
+
+self.addEventListener("install", e => {
+  e.waitUntil(
+    caches.open(CACHE).then(c => c.addAll(SHELL)).then(() => self.skipWaiting())
+  );
+});
+
+self.addEventListener("activate", e => {
+  e.waitUntil((async () => {
+    for (const k of await caches.keys()) {
+      if (k !== CACHE) await caches.delete(k);
+    }
+    await self.clients.claim();
+  })());
+});
+
+self.addEventListener("fetch", e => {
+  const req = e.request;
+  if (req.method !== "GET") return;                      // POST/PUT ko bilkul na chhuo
+  const url = new URL(req.url);
+  if (url.origin !== self.location.origin) return;       // Supabase, CDN, doosre domains
+  if (url.pathname.startsWith("/api/")) return;          // API responses cache nahi karni
+
+  e.respondWith((async () => {
+    try {
+      const res = await fetch(req);
+      if (res.ok) {
+        const cache = await caches.open(CACHE);
+        cache.put(req, res.clone());
+      }
+      return res;
+    } catch {
+      const cached = (await caches.match(req)) || (await caches.match("/index.html"));
+      return cached || new Response("Offline", { status: 503 });
+    }
+  })());
 });
