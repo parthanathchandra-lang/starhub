@@ -1,0 +1,11 @@
+name: deploy-surge
+on:
+  push:
+    branches: [main]
+jobs:
+  deploy:
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v4
+      - run: npm i -g surge
+      - run: surge ./ starhubigdp.surge.sh --token ${{ secrets.SURGE_TOKEN }}
