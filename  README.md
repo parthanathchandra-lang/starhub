@@ -1,68 +1,74 @@
-# StarHub - Universal Auto Unspecified - ULTIMATE BEST - 150% - Akela 100% + Sab ka sath 100% - Past Present Future Safe
+# StarHub
 
-**Principle:** No ping keu - Problem hai to solution need - Nahi hai to others/any - Solutions need hai ya nahi auto - Universal auto unspecified - Akela work + Sab ka sath work - Really best - 150%
+StarHub is an experimental web project for browsing game-related listings and exploring related pages and API handlers.
 
-## What Where When Which Possibilities - Universal Specify Unspecified - Advance Auto - Real
+## Project status
 
-| File | Specify Need - Must Specify - When Where Need | Unspecified Need - No Need Specify - When Where Not Need - Universal Auto |
-| --- | --- | --- |
-| `.vercelignore` | Must specify: node_modules .git .vercel .env .next dist build logs - Security - No secret leak - When: deploy | Must NOT specify: lib/* api/* *.html vercel.json - Auto deploy - Any future file auto - When: new file add - Universal auto |
-| `api/index.js` | Must specify: /api/health /api/affiliate /api/donation /api/all /api/sitemap.xml - 5 core - When: /api/ hit - Need list | Must unspecified: /api/* any future API - others_any_universal - Any domain auto - When: 2027 new api - No specify - Future safe |
-| `README.md` | Must specify: Laws DPDP GDPR FTC FCRA + Principle + Routes + Akela Sab ka sath - When: dev reads | Must unspecified: Don't list every file content - Summary only - Future files auto valid - When: new file added - Universal |
+This project is under development. The presence of a page, API handler, configuration option, or feature flag does not by itself mean that the feature is complete, deployed, secure, or legally compliant. Test each feature in the intended hosting environment before relying on it.
 
-## Files - All Akela 100% - Specify Unspecified Best - 150%
+## Current repository structure
 
-### Core Must Specify - Security Legal Filter Valid - When Need - Real:
-- `api/affiliate.js` - 150% - LANG_MAP + CURRENCY_MAP + getLawConfig ENV + txnId AFF- + idempotency + rate limit + fraud + brand safety + no open redirect + Past Present Future safe
-- `api/donation.js` - 130% - LANG_MAP + CURRENCY_MAP + getLawConfig ENV + FCRA + qr expiry 600 + upi intent + txnId DON- + Auto hide + Past Present Future safe
-- `lib/auto-os.js` - No import - No circular - Hash only - No PII - DPDP Sec 8(4) - Universal
-- `lib/problems-auto.js` - Filter best - 122+ 133± 2026 - Single export - Universal
-- `vercel.json` - Order fixed - API first - No loop - Universal
+- `index.html` — main web page
+- `accounts/`, `settings/`, `search/`, `store/`, `watch/` — additional pages
+- `api/` — serverless API handler files
+- `components/` and `lib/` — shared application code
+- `public/` — public assets and legal pages
+- `vercel.json` — Vercel configuration
+- `manifest.json` and `sw.js` — PWA-related files; confirm which copies are used by the deployed site
 
-### Universal Auto Unspecified - No Need Specify - When Not Need - Future Safe - Really Best:
-- `api/[...all].js` - Dynamic - Any number auto - others_any_universal - Any domain auto any storage auto - Past Present Future safe
-- `api/sitemap.xml.js` - Dynamic sitemap - Auto base - Closest tower auto - Universal auto
-- `api/index.js` - Root API - Core list specify + Any future auto unspecified - 150% - Universal auto
-- `.vercelignore` - Specify secrets must ignore - Unspecified project files auto deploy - 150%
-- `api/health.js` - Health check - No lib need - Akela 100% - Universal
+Some filenames and duplicate files may need cleanup. Verify all links and deployment routes before renaming or deleting files.
 
-## Routes - Universal - Specify + Unspecified - 150%
+## Requirements and setup
 
-### Specify Need - Fixed Routes - Must Specify - When Need:
-- `/` - index.html - Akela 100% - Must
-- `/api/health` - Health - Must
-- `/api/affiliate?type=starhub` - Affiliate - Owner 5% Creator 95% - Their KYC - Must
-- `/api/donation?type=qr` - Donation QR separate noindex - Must
-- `/api/all` - 100000 files - Puter unlimited - Must
-- `/api/sitemap.xml` - Dynamic sitemap - Must
+The repository setup has not yet been verified as a reproducible build.
 
-### Unspecified Need - Any Future Route Auto - No Need Specify - When Not Need - Universal Auto - Past Present Future Safe:
-- `/api/1` - Day Today - Any number auto - Unspecified - Auto
-- `/api/2` - Week - Any number auto - Unspecified - Auto
-- `/api/999999` - Unlimited - Any number auto - Unspecified - Auto
-- `/api/xyz` - Any new platform 2027 - others fallback - Unspecified - Auto
-- `/api/*` - Any future API - Universal auto unspecified - Past Present Future safe - Auto
+Before using npm commands:
 
-## Global Law - Past Present Future Safe - Specify + Unspecified - 150% - Legal Best
+1. Rename `package.josn` to `package.json`.
+2. Make sure `package.json` lists the dependencies and scripts the project actually uses.
+3. Generate and commit `package-lock.json`.
+4. Run the documented install, test, and build commands locally and in CI.
 
-### Specify Need - Must Specify - Laws - Legal Safe - When Need - Real:
-- DPDP Act 2023 Sec 5,6,7,8,8(4),12,13 - Must - Hash only - No PII - Secretly secure
-- GDPR Art 5,6,17,25,32 - Must - Hash only - No PII
-- FTC 16 CFR Part 255 + ASCI India 2024 - Must - Affiliate disclosure
-- FCRA Act 2010 + Amendment 2020 - Must - Donation domestic only
-- PMLA Act 2002 Sec 12 - Must - Donation
-- Amazon Associates Operating Agreement 2024 - Must - Affiliate cookie 24h 30d
+The current `index.html` refers to `/config.js`, while the repository contains `cofing.js`. Make those names consistent before expecting the page configuration to load.
 
-### Unspecified Need - Auto Adjustable Real Time Laws - No Need Specify Future Law - Universal Auto - Past Present Future Safe:
-- ENV LAW_VERSION - Any future law version auto - Unspecified - No code deploy - Real time - Auto Adjustable
-- ENV BANNED_COUNTRIES - Any country ban auto hide - Unspecified - NEW_BAN - Feature right - Future safe
-- ENV AFFILIATE_ENABLED DONATION_ENABLED - Auto hide if disabled - Unspecified - Real time
-- Tower country auto - Any country auto - IN AE SA US EU WORLD - Unspecified - Universal auto
+## Configuration and secrets
 
-## Push - 150% - Maximum Best Advance Auto - Universal Specify Unspecified - FINAL
+Use environment variables in the hosting provider for server-side credentials.
 
-```bash
-git checkout parthanathchandra-lang-patch-3
-git add .vercelignore api/index.js README.md
-git commit -m "150% FILE 17 18 19 - MAXIMUM BEST ADVANCE AUTO - UNIVERSAL SPECIFY UNSPECIFIED - .vercelignore 150% Specify secrets must ignore node_modules .git .env .next + Unspecified project files auto deploy - api/index.js 150% Specify core 5 routes /api/health /api/affiliate /api/donation /api/all /api/sitemap.xml + Unspecified any future /api/* others_any_universal any_domain_auto - Real time laws ENV LAW_VERSION BANNED_COUNTRIES auto hide - README.md 150% Specify laws routes principle + Unspecified future files auto valid - Past Present Future safe - When Where Need Specify When Not Unspecified - What Where When Which Possibilities - Everything find search Think solutions universal - Akela 100% Sab ka sath 100% - Really best - Advance - Maximum - Ready for anything - FINAL DONE - ULTIMATE BEST - 150%"
-git push
+- Do not commit passwords, private keys, webhook secrets, or service-role credentials.
+- Do not put server secrets in browser JavaScript or public files.
+- Browser-visible Supabase configuration must use a publishable/anon key and appropriate Row Level Security policies.
+- `.env.example` should contain only variable names the application actually uses, with placeholder values.
+
+## API routes
+
+API handler files are located in `api/`. Confirm each route’s deployed URL, allowed methods, input validation, error behavior, and authentication before documenting it as supported.
+
+Unknown routes should return a not-found response. Do not claim that arbitrary future routes are automatically available.
+
+## Security and privacy
+
+Collect only the data the application needs. Validate untrusted input, keep secrets server-side, and review access-control policies for any connected database or storage service.
+
+Security headers, hashes, environment flags, and health responses are not proof that the application is secure, anonymous, or legally compliant.
+
+## Legal information
+
+The pages in `public/legal/` should accurately describe the product’s real data collection, third-party services, cookies, retention, and user choices.
+
+Legal requirements depend on the product, users, locations, and activities. This README is not legal advice and does not certify compliance. Get qualified advice before enabling payments, donations, affiliate programs, or other regulated features.
+
+## Testing checklist
+
+Before deploying a change:
+
+- Confirm important pages load and links point to existing files.
+- Test API routes with valid and invalid inputs.
+- Verify authentication and database access policies.
+- Check that no secrets are present in tracked files.
+- Test the production build and deployment configuration.
+- Test PWA/offline behavior only if those features are intentionally supported.
+
+## Contributing
+
+Make focused changes, run the project’s available checks, and describe what you tested in your pull request or commit.
